@@ -2,3 +2,22 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+.jumbotron{
+  background-color: #43B187;
+  color: #ffe27c;
+}
+
+#main-icon{
+  color: red
+}
+
+.test{
+  border: 0px solid black;
+  border-radius: 20px;
+  background-color: rgb(240, 240, 240)
+}
+
+form{
+  margin-top: 0;
+}
