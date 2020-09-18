@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "DMJR4kidz!",
+    "password": "bootcamp",
     "database": "user_login",
     "host": "127.0.0.1",
     "dialect": "mysql"
