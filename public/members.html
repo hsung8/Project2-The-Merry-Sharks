@@ -24,8 +24,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <h2>Hi Username</h2>
-          <h3>Your Calorie Goal on "Today" is "database-value" kcal</h3>
+          <h2 class="greeting">Hello Lovely</h2>
         </div>
       </div>
     </div>
@@ -56,11 +55,23 @@
             <form>
               <div>
                 <label>Type your food</label>
-                <input placeholder="Input your food here" />
+                <input name="food" placeholder="Input your food here" />
               </div>
               <div>
                 <label>Type calorie</label>
-                <input placeholder="Input calories" />
+                <input name="calories" placeholder="Input calories" />
+              </div>
+              <div>
+                <label>Type protein</label>
+                <input name="protein" placeholder="Input protein" />
+              </div>
+              <div>
+                <label>Type fat</label>
+                <input name="fat" placeholder="Input fat" />
+              </div>
+              <div>
+                <label>Type sugar</label>
+                <input name="sugar" placeholder="Input sugar" />
               </div>
               <button type="submit">submit</button>
             </form>
@@ -86,41 +97,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js"></script>
     <script type="text/javascript" src="js/members.js"></script>
     <script type="text/javascript">
-      $("#searchFood").click((event) => {
-        event.preventDefault();
-        let searchTerm = $("#food-name")
-          .val()
-          .trim();
-        const link = `https://api.edamam.com/api/food-database/v2/parser?nutrition-type=logging&ingr=${searchTerm}&app_id=b3680fc6&app_key=8f1414fd887696e063a286f3fea6cd89`;
-        $.ajax({
-          url: link,
-          method: "GET",
-        }).done(function(result) {
-          // console.log("name", result.text);
-          // console.log("kcal", result.parsed[0].food.nutrients.ENERC_KCAL);
-          // console.log("img", result.parsed[0].food.image);
-          let kCal = Math.round(result.hints[0].food.nutrients.ENERC_KCAL);// round up kCal
-          let resultFood = $("<h3>").text(`${result.text} (${kCal} calories)`);
-          let resultImg = result.hints[0].food.image;
-          $("#searchResult").append(resultFood);//create the name of food you searched
-          //Create a dropdown list to select which meal of the day you want to add this food to
-          const dropdownList = $('<form action="/action_page.php"></form>');
-          dropdownList.append($(`<label for="meal">Choose a meal</label>`));
-          const mealOfDay = $(`<select name="meal" id="meal"></select>`)
-          const breakFast = $(`<option value="breakfast">breakfast</option>`);
-          const lunch = $(`<option value="lunch">lunch</option>`);
-          const dinner = $(`<option value="dinner">dinner</option>`);
-          breakFast.appendTo(mealOfDay);
-          lunch.appendTo(mealOfDay);
-          dinner.appendTo(mealOfDay);
-          mealOfDay.appendTo(dropdownList)
-          const input = $(`<br><input type="submit" value="Submit">`);
-          input.appendTo(dropdownList)
-          dropdownList.appendTo($("#searchResult"))
-        });
-      });
+      
     </script>
   </body>
 </html>
