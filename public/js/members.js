@@ -1,17 +1,19 @@
 $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
-  $.get("/api/user_data").then(data => {
+  $.get("/api/user_data").then((data) => {
     console.log(data);
     const currentTime = moment().format("MMMM Do YYYY");
+    console.log(currentTime);
+    //Create greetings to user with their total calories count
     $(".greeting").text(`Hello ${data.name}`);
-    $(".greeting2").text(
-      `Your Calorie Goal on ${currentTime} is <b>${data.goal}</b> kCal`
-    );
+    $(
+      `<h3 class="greeting2">Your Calorie Goal on ${currentTime} is <b>${data.goal} kcal</b></h3>`
+    ).appendTo($(".greeting"));
   });
 
   //Event listener for searching a food
-  $("#searchFood").click(event => {
+  $("#searchFood").click((event) => {
     event.preventDefault();
     const searchTerm = $("#food-name")
       .val()
@@ -19,13 +21,15 @@ $(document).ready(() => {
     const link = `https://api.edamam.com/api/food-database/v2/parser?nutrition-type=logging&ingr=${searchTerm}&app_id=b3680fc6&app_key=8f1414fd887696e063a286f3fea6cd89`;
     $.ajax({
       url: link,
-      method: "GET"
-    }).done(result => {
+      method: "GET",
+    }).done((result) => {
       // console.log("name", result.text);
       // console.log("kcal", result.parsed[0].food.nutrients.ENERC_KCAL);
       // console.log("img", result.parsed[0].food.image);
       const kCal = Math.round(result.hints[0].food.nutrients.ENERC_KCAL); // round up kCal
-      const resultFood = $("<h3>").text(`${result.text} (${kCal} calories)`);
+      const resultFood = $("<h3>").text(
+        `${result.text} is ( ${kCal} calories)`
+      );
       const resultImg = result.hints[0].food.image;
       $("#searchResult").append(resultFood); //create the name of food you searched
       //Create a dropdown list to select which meal of the day you want to add this food to
@@ -65,13 +69,13 @@ myChart = new Chart(ctx, {
     responsive: false,
     maintainAspectRatio: false,
     title: {
-      text: "Daily calrories",
-      display: false
+      text: "Daily calories",
+      display: false,
     },
     legend: {
-      display: false
-    }
-  }
+      display: false,
+    },
+  },
 });
 
 // Center text in the doughnut chart
@@ -92,5 +96,5 @@ Chart.pluginService.register({
 
     ctx.fillText(text, textX, textY);
     ctx.save();
-  }
+  },
 });
