@@ -25,6 +25,7 @@ myChart = new Chart(ctx, {
   options: {
     responsive: false,
     maintainAspectRatio: false,
+    cutoutPercentage: 80,
     title: {
       text: "Daily calrories",
       display: false
@@ -43,11 +44,11 @@ Chart.pluginService.register({
       ctx = chart.chart.ctx;
 
     ctx.restore();
-    const fontSize = 1;
+    const fontSize = 1.5;
     ctx.font = fontSize + "em sans-serif";
     ctx.textBaseline = "middle";
 
-    const text = "1000 Calories Left",
+    const text = "1000\n Calories left",
       textX = Math.round((width - ctx.measureText(text).width) / 2),
       textY = height / 2;
 
