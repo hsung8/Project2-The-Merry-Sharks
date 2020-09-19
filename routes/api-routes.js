@@ -54,4 +54,17 @@ module.exports = function(app) {
       });
     }
   });
+
+  //Route to add a food item to the user's log
+  app.post("/api/members", (req, res) => {
+    const id = req.body.userId;
+    db.Food.create({
+      userId: id,
+      meal: req.body.meal,
+      foodName: req.body.foodName,
+      calories: req.body.calories
+    }).catch(err => {
+      res.status(401).json(err);
+    });
+  });
 };
