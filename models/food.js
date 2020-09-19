@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     // The type of food that was eaten
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     foodName: {
       type: DataTypes.STRING,
@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
     // The meal it will be logged as (Breakfast, Lunch, Dinner, Snack)
     meal: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     }
   });
   return Food;

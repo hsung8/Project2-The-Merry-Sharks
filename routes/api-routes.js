@@ -50,21 +50,22 @@ module.exports = function(app) {
         email: req.user.email,
         name: req.user.name,
         goal: req.user.goal,
-        id: req.user.id
+        userId: req.user.userId
       });
     }
   });
 
   //Route to add a food item to the user's log
-  app.post("/api/members", (req, res) => {
-    const id = req.body.userId;
+  app.post("/api/foods", (req, res) => {
+    console.log("post foods check?");
     db.Food.create({
-      userId: id,
+      userId: req.body.userId,
       meal: req.body.meal,
       foodName: req.body.foodName,
       calories: req.body.calories
     }).catch(err => {
-      res.status(401).json(err);
+      res.status(500).json(err);
+      throw err;
     });
   });
 };
