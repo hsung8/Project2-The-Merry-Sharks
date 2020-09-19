@@ -21,7 +21,7 @@ module.exports = function(app) {
     db.User.create({
       email: req.body.email,
       name: req.body.name,
-      goal: req.body.goal,
+      goal: parseInt(req.body.goal),
       password: req.body.password
     })
       .then(() => {

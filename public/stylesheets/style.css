@@ -12,6 +12,10 @@ form.login {
   color: red
 }
 
+#myChart{
+  margin: auto;
+}
+
 .test{
   border: 0px solid black;
   border-radius: 20px;
@@ -20,4 +24,8 @@ form.login {
 
 form{
   margin-top: 0;
+}
+
+.navbar{
+  background-color: #43B187
 }

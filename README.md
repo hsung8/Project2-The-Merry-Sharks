@@ -6,7 +6,7 @@ A diet tracker application that allows user to manage their calories and diet ha
 ### User Story
 ```
 As a health-conscious USER,
-I wnat to set my goal calories,
+I want to set my goal calories,
 and be able to log my food intake calories.
 By comparing my goal and habit,
 I can achieve my healthy goals

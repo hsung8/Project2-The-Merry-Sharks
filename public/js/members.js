@@ -7,31 +7,26 @@ $(document).ready(() => {
   });
 });
 
-window.onload = function() {
-  let chart = new CanvasJS.Chart("chartContainer", {
-    animationEnabled: true,
-    title: {
-      text: "Email Categories",
-      horizontalAlign: "left"
-    },
-    data: [
+const a = 25;
+const b = 25;
+let myDoughnutChart = document.getElementById("myChart").getContext('2d');
+myDoughnutChart = new Chart(myDoughnutChart, {
+  type: "doughnut",
+  data: {
+    datasets: [
       {
-        type: "doughnut",
-        startAngle: 60,
-        //innerRadius: 60,
-        indexLabelFontSize: 17,
-        indexLabel: "{label} - #percent%",
-        toolTipContent: "<b>{label}:</b> {y} (#percent%)",
-        dataPoints: [
-          { y: 67, label: "Inbox" },
-          { y: 28, label: "Archives" },
-          { y: 10, label: "Labels" },
-          { y: 7, label: "Drafts" },
-          { y: 15, label: "Trash" },
-          { y: 6, label: "Spam" }
-        ]
+        data: [a, b],
+        backgroundColor: ["#43B187", "#dedede"]
       }
-    ]
-  });
-  chart.render();
-};
+    ],
+    labels: ["Consumed calories", "Left Calories"]
+  },
+  options: {
+    responsive: false,
+    maintainAspectRatio: false,
+    title: {
+      text: "Daily calrories",
+      display: true
+    }
+  }
+});
