@@ -63,11 +63,12 @@
             <h3>
               <span>
                 <form>
-                  <input name="food-name" placeholder="search what you ate" />
+                  <input id ="food-name" name="food-name" placeholder="search what you ate" />
                   <button id="searchFood" type="submit">Search</button>
                 </form>
               </span>
             </h3>
+            <div id="searchResult"></div>
           </div>
         </div>
       </div>
@@ -75,5 +76,16 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/members.js"></script>
+    <script type="text/javascript">
+      $("#searchFood").click(() => {
+        let searchTerm = $("food-name").val().trim()
+        $.ajax({
+          url: `https://api.edamam.com/api/food-database/v2/parser?nutrition-type=logging&ingr=${searchTerm}&app_id=b3680fc6&app_key=8f1414fd887696e063a286f3fea6cd89`,
+          method: "GET"
+        }).done(function(result) {
+          console.log(result)
+        });
+      });
+    </script>
   </body>
 </html>

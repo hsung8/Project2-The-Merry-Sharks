@@ -34,6 +34,7 @@ $(document).ready(() => {
       })
       .catch(err => {
         console.log(err);
+        alert("Wrong username or password");
       });
   }
 });
