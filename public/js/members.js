@@ -30,7 +30,7 @@ $(document).ready(() => {
       const resultFood = $("<h3>").text(
         `${result.text} is ( ${kCal} calories)`
       );
-      const resultImg = result.hints[0].food.image;
+      // const resultImg = result.hints[0].food.image;
       $("#searchResult").append(resultFood); //create the name of food you searched
       //Create a dropdown list to select which meal of the day you want to add this food to
       const dropdownList = $(`<form action="/action_page.php"></form>`);
