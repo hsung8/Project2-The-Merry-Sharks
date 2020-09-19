@@ -2,8 +2,51 @@ $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   $.get("/api/user_data").then(data => {
-    $(".member-name").text(data.name);
-    $(".member-goal").text(data.goal);
+    console.log(data);
+    const currentTime = moment().format("MMMM Do YYYY");
+    console.log(currentTime);
+    //Create greetings to user with their total calories count
+    $(".greeting").text(`Hello ${data.name}`);
+    $(
+      `<h3 class="greeting2">Your Calorie Goal on ${currentTime} is <b>${data.goal} kcal</b></h3>`
+    ).appendTo($(".greeting"));
+  });
+
+  //Event listener for searching a food
+  $("#searchFood").click(event => {
+    event.preventDefault();
+    const searchTerm = $("#food-name")
+      .val()
+      .trim();
+    const link = `https://api.edamam.com/api/food-database/v2/parser?nutrition-type=logging&ingr=${searchTerm}&app_id=b3680fc6&app_key=8f1414fd887696e063a286f3fea6cd89`;
+    $.ajax({
+      url: link,
+      method: "GET"
+    }).done(result => {
+      // console.log("name", result.text);
+      // console.log("kcal", result.parsed[0].food.nutrients.ENERC_KCAL);
+      // console.log("img", result.parsed[0].food.image);
+      const kCal = Math.round(result.hints[0].food.nutrients.ENERC_KCAL); // round up kCal
+      const resultFood = $("<h3>").text(
+        `${result.text} is ( ${kCal} calories)`
+      );
+      // const resultImg = result.hints[0].food.image;
+      $("#searchResult").append(resultFood); //create the name of food you searched
+      //Create a dropdown list to select which meal of the day you want to add this food to
+      const dropdownList = $(`<form action="/action_page.php"></form>`);
+      dropdownList.append($(`<label for="meal">Choose a meal</label>`));
+      const mealOfDay = $(`<select name="meal" id="meal"></select>`);
+      const breakFast = $(`<option value="breakfast">breakfast</option>`);
+      const lunch = $(`<option value="lunch">lunch</option>`);
+      const dinner = $(`<option value="dinner">dinner</option>`);
+      breakFast.appendTo(mealOfDay);
+      lunch.appendTo(mealOfDay);
+      dinner.appendTo(mealOfDay);
+      mealOfDay.appendTo(dropdownList);
+      const input = $(`<br><input type="submit" value="Submit">`);
+      input.appendTo(dropdownList);
+      dropdownList.appendTo($("#searchResult"));
+    });
   });
 });
 
@@ -27,7 +70,7 @@ myChart = new Chart(ctx, {
     maintainAspectRatio: false,
     cutoutPercentage: 80,
     title: {
-      text: "Daily calrories",
+      text: "Daily calories",
       display: false
     },
     legend: {
