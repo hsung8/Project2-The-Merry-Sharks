@@ -24,16 +24,68 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <h2>Hi <span class="member-name"></span>! Your calorie goal for today is <span class="member-goal"></span>!</h2>
-          <form>
-            <label for="caloriesInput">Please input your total daily calories you want to achieve</label>
-            <input type="text" id="caloriesInput" name= "totalCalories" required>
-          </form>
+          <h2>Hi Username</h2>
+          <h3>Your Calorie Goal on "Today" is "database-value" kcal</h3>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <h2>chart</h2>
+        </div>
+        <div class="col-md-6 text-center">
+          <div>
+            <h4>Carbs <span id="carb">number</span></h4>
+            <h4>Protein <span id="protein">number</span></h4>
+            <h4>Fat <span id="fat">number</span></h4>
+            <h4>Sugar <span id="sugar">number</span></h4>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <form>
+              <div>
+                <label>Type your food</label>
+                <input placeholder="Input your food here" />
+              </div>
+              <div>
+                <label>Type calorie</label>
+                <input placeholder="Input calories" />
+              </div>
+              <button type="submit">submit</button>
+            </form>
+          </div>
+          <div class="col-md-6 text-center">
+            <h3>
+              <span>
+                <form>
+                  <input id ="food-name" name="food-name" placeholder="search what you ate" />
+                  <button id="searchFood" type="submit">Search</button>
+                </form>
+              </span>
+            </h3>
+            <div id="searchResult"></div>
+          </div>
         </div>
       </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/members.js"></script>
+    <script type="text/javascript">
+      $("#searchFood").click(() => {
+        let searchTerm = $("food-name").val().trim()
+        $.ajax({
+          url: `https://api.edamam.com/api/food-database/v2/parser?nutrition-type=logging&ingr=${searchTerm}&app_id=b3680fc6&app_key=8f1414fd887696e063a286f3fea6cd89`,
+          method: "GET"
+        }).done(function(result) {
+          console.log(result)
+        });
+      });
+    </script>
   </body>
 </html>

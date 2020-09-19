@@ -15,7 +15,6 @@ $(document).ready(() => {
       name: nameInput.val().trim(),
       goal: goalInput.val().trim()
     };
-
     if (!userData.email || !userData.password) {
       return;
     }
@@ -32,9 +31,9 @@ $(document).ready(() => {
   function signUpUser(email, password, name, goal) {
     $.post("/api/signup", {
       email: email,
-      password: password,
       name: name,
-      goal: goal
+      goal: goal,
+      password: password
     })
       .then(() => {
         window.location.replace("/members");
