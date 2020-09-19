@@ -3,7 +3,46 @@ $(document).ready(() => {
   // and updates the HTML on the page
   $.get("/api/user_data").then(data => {
     console.log(data);
-    $(".greeting").text(`data.name`);
+    const currentTime = moment().format("MMMM Do YYYY");
+    $(".greeting").text(`Hello ${data.name}`);
+    $(".greeting2").text(
+      `Your Calorie Goal on ${currentTime} is <b>${data.goal}</b> kCal`
+    );
+  });
+
+  //Event listener for searching a food
+  $("#searchFood").click(event => {
+    event.preventDefault();
+    const searchTerm = $("#food-name")
+      .val()
+      .trim();
+    const link = `https://api.edamam.com/api/food-database/v2/parser?nutrition-type=logging&ingr=${searchTerm}&app_id=b3680fc6&app_key=8f1414fd887696e063a286f3fea6cd89`;
+    $.ajax({
+      url: link,
+      method: "GET"
+    }).done(result => {
+      // console.log("name", result.text);
+      // console.log("kcal", result.parsed[0].food.nutrients.ENERC_KCAL);
+      // console.log("img", result.parsed[0].food.image);
+      const kCal = Math.round(result.hints[0].food.nutrients.ENERC_KCAL); // round up kCal
+      const resultFood = $("<h3>").text(`${result.text} (${kCal} calories)`);
+      const resultImg = result.hints[0].food.image;
+      $("#searchResult").append(resultFood); //create the name of food you searched
+      //Create a dropdown list to select which meal of the day you want to add this food to
+      const dropdownList = $(`<form action="/action_page.php"></form>`);
+      dropdownList.append($(`<label for="meal">Choose a meal</label>`));
+      const mealOfDay = $(`<select name="meal" id="meal"></select>`);
+      const breakFast = $(`<option value="breakfast">breakfast</option>`);
+      const lunch = $(`<option value="lunch">lunch</option>`);
+      const dinner = $(`<option value="dinner">dinner</option>`);
+      breakFast.appendTo(mealOfDay);
+      lunch.appendTo(mealOfDay);
+      dinner.appendTo(mealOfDay);
+      mealOfDay.appendTo(dropdownList);
+      const input = $(`<br><input type="submit" value="Submit">`);
+      input.appendTo(dropdownList);
+      dropdownList.appendTo($("#searchResult"));
+    });
   });
 });
 
@@ -101,22 +140,22 @@ myChart = new Chart(ctx, {
     datasets: [
       {
         data: [consumedCalories, leftCalories],
-        backgroundColor: ["#43B187", "#dedede"]
-      }
+        backgroundColor: ["#43B187", "#dedede"],
+      },
     ],
-    labels: ["Consumed calories", "Left Calories"]
+    labels: ["Consumed calories", "Left Calories"],
   },
   options: {
     responsive: false,
     maintainAspectRatio: false,
     title: {
       text: "Daily calrories",
-      display: true
+      display: true,
     },
     elements: {
       center: {
-        text: leftCalories + " Calories are left"
-      }
-    }
-  }
+        text: leftCalories + " Calories are left",
+      },
+    },
+  },
 });
