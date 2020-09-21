@@ -26,6 +26,7 @@ $(document).ready(() => {
       // console.log("name", result.text);
       // console.log("kcal", result.parsed[0].food.nutrients.ENERC_KCAL);
       // console.log("img", result.parsed[0].food.image);
+      $("#searchResult").empty(); // clear the previous result
       const kCal = Math.round(result.hints[0].food.nutrients.ENERC_KCAL); // round up kCal
       const resultFood = $("<h3>").text(
         `${result.text} is ( ${kCal} calories)`
