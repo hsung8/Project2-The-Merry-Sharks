@@ -99,3 +99,40 @@ Chart.pluginService.register({
     ctx.save();
   }
 });
+
+// Nutrient table
+const myData = [
+  { Nutrients: "Carbs", Intake: 100 },
+  { Nutrients: "Protein", Intake: 200 },
+  { Nutrients: "Fat", Intake: 80 },
+  { Nutrients: "Sugar", Intake: 26 }
+];
+
+function generateTableHead(table) {
+  const thead = table.createTHead();
+  const row = thead.insertRow();
+  for (const key of data) {
+    const th = document.createElement("th");
+    const text = document.createTextNode(key);
+    th.appendChild(text);
+    row.appendChild(th);
+  }
+}
+
+function generateTable(table, data) {
+  for (const element of data) {
+    const row = table.insertRow();
+    for (key in element) {
+      const cell = row.insertCell();
+      const text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    }
+  }
+}
+
+const table = document.querySelector("table");
+const data = Object.keys(myData[0]);
+generateTableHead(table, data);
+generateTable(table, myData);
+
+table.className = "tbl";
