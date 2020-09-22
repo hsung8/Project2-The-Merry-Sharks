@@ -1,7 +1,7 @@
 $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
-  $.get("/api/user_data").then((data) => {
+  $.get("/api/user_data").then(data => {
     const currentTime = moment().format("MMMM Do YYYY");
     //Create greetings to user with their name and total calories count
     $(".greeting").text(`Hello ${data.name}`);
@@ -11,7 +11,7 @@ $(document).ready(() => {
   });
 
   //Event listener for searching a food
-  $("#searchFood").click((event) => {
+  $("#searchFood").click(event => {
     event.preventDefault();
     $("#databaseSearch").empty();
     const searchTerm = $("#food-name")
@@ -20,8 +20,8 @@ $(document).ready(() => {
     const link = `https://api.edamam.com/api/food-database/v2/parser?nutrition-type=logging&ingr=${searchTerm}&app_id=b3680fc6&app_key=8f1414fd887696e063a286f3fea6cd89`;
     $.ajax({
       url: link,
-      method: "GET",
-    }).done((result) => {
+      method: "GET"
+    }).done(result => {
       //Display the food user searched and its nutrient profile
       const resultForm = $("#databaseSearch");
       for (let i = 0; i < 7; i++) {
@@ -49,7 +49,7 @@ $(document).ready(() => {
             "https://media.istockphoto.com/vectors/yum-text-yummy-concept-design-doodle-for-print-vector-id1178543653?b=1&k=6&m=1178543653&s=612x612&w=0&h=M8Pa4Qne8pDCse3Zdg-a1fpMblWwZd1WfeHLMwNM1Mk=",
           alt: result.text,
           width: 200,
-          height: 180,
+          height: 180
         });
         const newForm = $(`<form action="/api/foods" method="post" ></form>`);
         //Append all result to the DOM
@@ -116,8 +116,8 @@ $("#addFood").click(() => {
 function createDonutChart() {
   $.ajax({
     url: "/api/nutrients",
-    method: "GET",
-  }).then((result) => {
+    method: "GET"
+  }).then(result => {
     const totalConsumedCal = result.reduce((acc, value) => {
       return acc + parseInt(value.calories);
     }, 0);
@@ -131,10 +131,10 @@ function createDonutChart() {
         datasets: [
           {
             data: [consumedCalories, leftCalories],
-            backgroundColor: ["#43B187", "#dedede"],
-          },
+            backgroundColor: ["#43B187", "#dedede"]
+          }
         ],
-        labels: ["Consumed calories", "Left Calories"],
+        labels: ["Consumed calories", "Left Calories"]
       },
       options: {
         responsive: false,
@@ -142,17 +142,17 @@ function createDonutChart() {
         cutoutPercentage: 80,
         title: {
           text: "Daily calories",
-          display: false,
+          display: false
         },
         legend: {
-          display: false,
-        },
-      },
+          display: false
+        }
+      }
     });
 
     // Center text in the doughnut chart
     Chart.pluginService.register({
-      beforeDraw: function (chart) {
+      beforeDraw: function(chart) {
         const width = chart.chart.width,
           height = chart.chart.height,
           ctx = chart.chart.ctx;
@@ -168,7 +168,7 @@ function createDonutChart() {
 
         ctx.fillText(text, textX, textY);
         ctx.save();
-      },
+      }
     });
   });
 }
@@ -177,8 +177,8 @@ function createDonutChart() {
 function getNutrientData() {
   $.ajax({
     url: "/api/nutrients",
-    method: "GET",
-  }).then((result) => {
+    method: "GET"
+  }).then(result => {
     console.log(result[0].User);
     totalCarb = result.reduce((acc, value) => {
       return acc + parseInt(value.carb);
@@ -203,7 +203,7 @@ function createNutrientTable() {
     { Nutrients: "Carbs", Intake: totalCarb + " g" },
     { Nutrients: "Protein", Intake: totalProtein + " g" },
     { Nutrients: "Fat", Intake: totalFat + " g" },
-    { Nutrients: "Fiber", Intake: totalFiber + " g" },
+    { Nutrients: "Fiber", Intake: totalFiber + " g" }
   ];
 
   function generateTableHead(table) {

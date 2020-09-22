@@ -12,7 +12,7 @@ $(document).ready(() => {
         carb: item.carb,
         protein: item.protein,
         fat: item.fat,
-        fiber: item.fiber,
+        fiber: item.fiber
       };
       return newItem;
     });
