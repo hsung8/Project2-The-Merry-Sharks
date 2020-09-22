@@ -68,7 +68,7 @@ $(document).ready(() => {
         const lunch = $(`<option value="lunch">lunch</option>`);
         const dinner = $(`<option value="dinner">dinner</option>`);
         const input = $(
-          `<br><button id="addFood" type="submit" class="btn btn-primary">Submit</button>`
+          `<br><button id="addFood" type="submit" class="btn btn-primary btn-lg">Add</button>`
         ); //submit button
         mealOfDay.append(breakFast, lunch, dinner); // add options to dropdown
         mealOfDay.appendTo(newForm); // add dropdown to search result

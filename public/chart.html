@@ -12,7 +12,7 @@
       href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
       rel="stylesheet"
     />
-    <link href="stylesheets/style.css" rel="stylesheet" />
+    <link href="/stylesheets/style.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -50,22 +50,28 @@
         </ul>
       </div>
     </nav>
-    <div class="container">
-      <table id="myTable" class="display">
-        <thead>
-          <tr>
-            <th>Food</th>
-            <th>Consumed When</th>
-            <th>Calorie</th>
-            <th>Carb</th>
-            <th>Protein</th>
-            <th>Fat</th>
-            <th>Fiber</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-md-12 overflow-auto">
+          <table id="myTable" class="display">
+            <thead class="thead-avoid">
+              <tr class="table-dark">
+                <th>Food</th>
+                <th>Consumed When</th>
+                <th>Calorie</th>
+                <th>Carb</th>
+                <th>Protein</th>
+                <th>Fat</th>
+                <th>Fiber</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script
@@ -82,38 +88,37 @@
     <script type="text/javascript" src="js/chart.js"></script>
     <script type="text/javascript">
       $(document).ready(() => {
-        const table = $("tbody")[0]
+        const table = $("tbody")[0];
         $.ajax({
           url: "/api/nutrients",
           method: "GET",
         }).then((result) => {
-          const myData = result.map((item) =>{
+          const myData = result.map((item) => {
             const newItem = {
-                name: item.foodName,
-                consumedWhen : item.meal,
-                calorie: item.calories,
-                carb: item.carb,
-                protein: item.protein,
-                fat: item.fat,
-                fiber: item.fiber
-            }
-            return newItem
-          })
-        //   console.log(myData)
-          generateTable(table,myData)
+              name: item.foodName,
+              consumedWhen: item.meal,
+              calorie: item.calories,
+              carb: item.carb,
+              protein: item.protein,
+              fat: item.fat,
+              fiber: item.fiber,
+            };
+            return newItem;
+          });
+          //   console.log(myData)
+          generateTable(table, myData);
           $("#myTable").DataTable();
         });
-        
+
         function generateTable(table, data) {
           for (const element of data) {
             const row = table.insertRow();
             for (key in element) {
               const cell = row.insertCell();
-              cell.append(element[key])
+              cell.append(element[key]);
             }
           }
         }
-       
       });
     </script>
   </body>
