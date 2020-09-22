@@ -56,17 +56,32 @@ module.exports = function(app) {
   });
   //Route to add a food item to the user's log
   app.post("/api/foods", (req, res) => {
-    console.log(req.body);
-    console.log(req.user);
+    // Add food item to userlog and reload the page
     db.Food.create({
       foodName: req.body.foodName,
-      meal: req.body.meal,
       calories: req.body.calories,
+      meal: req.body.meal,
+      protein: req.body.protein,
+      fat: req.body.fat,
       carb: req.body.carb,
-    }).catch(err => {
+      fiber: req.body.fiber,
+      UserId: req.user.id,
+    }).catch((err) => {
       res.status(500).json(err);
       throw err;
     });
-    res.status(200);
+    res.redirect("/members");
+  });
+
+  //Route to get nutrients data for a user
+  app.get("/api/nutrients", (req, res) => {
+    db.Food.findAll({
+      where: {
+        userId: req.user.id
+      }
+    }).then(result => {
+      console.log(result);
+      res.status(200);
+    });
   });
 };

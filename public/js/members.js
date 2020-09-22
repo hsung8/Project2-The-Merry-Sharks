@@ -23,6 +23,7 @@ $(document).ready(() => {
       url: link,
       method: "GET",
     }).done((result) => {
+      console.log(link);
       // console.log("name", result.text);
       // console.log("kcal", result.parsed[0].food.nutrients.ENERC_KCAL);
       // console.log("img", result.parsed[0].food.image);
@@ -68,14 +69,12 @@ $(document).ready(() => {
       const lunch = $(`<option value="lunch">lunch</option>`);
       const dinner = $(`<option value="dinner">dinner</option>`);
       const input = $(`<br><button type="submit">Submit</button>`); //submit button
-      breakFast.appendTo(mealOfDay);
-      lunch.appendTo(mealOfDay);
-      dinner.appendTo(mealOfDay);
-      mealOfDay.appendTo(resultForm);
+      mealOfDay.append(breakFast, lunch, dinner); // add options to dropdown
+      mealOfDay.appendTo(resultForm); // add dropdown to search result
       input.appendTo(resultForm); // add submit button
       //Create hidden input elements that contains data to send the the backend
       const hiddenFoodName = $(
-        `<input type="hidden" name="foodName" value=${result.text}>`
+        `<input type="hidden" name="foodName" value="${result.text}">`
       );
       const hiddenCalorie = $(
         `<input type="hidden" name="calories" value=${kCal}>`
@@ -155,39 +154,51 @@ Chart.pluginService.register({
   },
 });
 
-// Nutrient table
-const myData = [
-  { Nutrients: "Carbs", Intake: 100 },
-  { Nutrients: "Protein", Intake: 200 },
-  { Nutrients: "Fat", Intake: 80 },
-  { Nutrients: "Fiber", Intake: 26 },
-];
-
-function generateTableHead(table) {
-  const thead = table.createTHead();
-  const row = thead.insertRow();
-  for (const key of data) {
-    const th = document.createElement("th");
-    const text = document.createTextNode(key);
-    th.appendChild(text);
-    row.appendChild(th);
-  }
+function getNutrientData() {
+  $.ajax({
+    url: link,
+    method: "GET"
+  }).then();
 }
 
-function generateTable(table, data) {
-  for (const element of data) {
-    const row = table.insertRow();
-    for (key in element) {
-      const cell = row.insertCell();
-      const text = document.createTextNode(element[key]);
-      cell.appendChild(text);
+// Function to create nutrient table
+function nutrientTable() {
+  // Nutrient table
+  const myData = [
+    { Nutrients: "Carbs", Intake: 100 },
+    { Nutrients: "Protein", Intake: 200 },
+    { Nutrients: "Fat", Intake: 80 },
+    { Nutrients: "Fiber", Intake: 26 },
+  ];
+
+  function generateTableHead(table) {
+    const thead = table.createTHead();
+    const row = thead.insertRow();
+    for (const key of data) {
+      const th = document.createElement("th");
+      const text = document.createTextNode(key);
+      th.appendChild(text);
+      row.appendChild(th);
     }
   }
+
+  function generateTable(table, data) {
+    for (const element of data) {
+      const row = table.insertRow();
+      for (key in element) {
+        const cell = row.insertCell();
+        const text = document.createTextNode(element[key]);
+        cell.appendChild(text);
+      }
+    }
+  }
+
+  const table = document.querySelector("table");
+  const data = Object.keys(myData[0]);
+  generateTableHead(table, data);
+  generateTable(table, myData);
+
+  table.className = "tbl";
 }
 
-const table = document.querySelector("table");
-const data = Object.keys(myData[0]);
-generateTableHead(table, data);
-generateTable(table, myData);
-
-table.className = "tbl";
+nutrientTable();
