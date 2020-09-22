@@ -10,7 +10,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
     });
   });
 
@@ -22,12 +22,12 @@ module.exports = function(app) {
       email: req.body.email,
       name: req.body.name,
       goal: parseInt(req.body.goal),
-      password: req.body.password
+      password: req.body.password,
     })
       .then(() => {
         res.redirect(307, "/api/login");
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(401).json(err);
       });
   });
@@ -50,8 +50,20 @@ module.exports = function(app) {
         email: req.user.email,
         name: req.user.name,
         goal: req.user.goal,
-        id: req.user.id
+        id: req.user.id,
       });
     }
+  });
+  //Route to add a food item to the user's log
+  app.post("/api/foods", (req, res) => {
+    db.Food.create({
+      userId: req.body.userId,
+      meal: req.body.meal,
+      foodName: req.body.foodName,
+      calories: req.body.calories
+    }).catch(err => {
+      res.status(500).json(err);
+      throw err;
+    });
   });
 };

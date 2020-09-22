@@ -1,7 +1,7 @@
 $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
-  $.get("/api/user_data").then(data => {
+  $.get("/api/user_data").then((data) => {
     console.log(data);
     const currentTime = moment().format("MMMM Do YYYY");
     console.log(currentTime);
@@ -13,7 +13,7 @@ $(document).ready(() => {
   });
 
   //Event listener for searching a food
-  $("#searchFood").click(event => {
+  $("#searchFood").click((event) => {
     event.preventDefault();
     const searchTerm = $("#food-name")
       .val()
@@ -21,16 +21,24 @@ $(document).ready(() => {
     const link = `https://api.edamam.com/api/food-database/v2/parser?nutrition-type=logging&ingr=${searchTerm}&app_id=b3680fc6&app_key=8f1414fd887696e063a286f3fea6cd89`;
     $.ajax({
       url: link,
-      method: "GET"
-    }).done(result => {
+      method: "GET",
+    }).done((result) => {
       // console.log("name", result.text);
       // console.log("kcal", result.parsed[0].food.nutrients.ENERC_KCAL);
       // console.log("img", result.parsed[0].food.image);
       $("#searchResult").empty(); // clear the previous result
       const kCal = Math.round(result.hints[0].food.nutrients.ENERC_KCAL); // round up kCal
+      const carbContent = Math.round(result.hints[0].food.nutrients.CHOCDF); // round up carb
+      const proteinContent = Math.round(result.hints[0].food.nutrients.PROCNT); // round up protein
+      const fatContent = Math.round(result.hints[0].food.nutrients.FAT); // round up fat
+      const fiberContent = Math.round(result.hints[0].food.nutrients.FIBTG); // round up fiber
       const resultFood = $("<h3>").text(
-        `${result.text} is ( ${kCal} calories)`
+        `${result.text} has ( ${kCal} calories)`
       );
+      const carbResult = $("<h4>").text(`${carbContent} grams of carbs`);
+      const proteinResult = $("<h4>").text(`${proteinContent} grams of carbs`);
+      const fatResult = $("<h4>").text(`${fatContent} grams of carbs`);
+      const resultCarb = $("<h4>").text(`${carb} grams of carbs`);
       // const resultImg = result.hints[0].food.image;
       $("#searchResult").append(resultFood); //create the name of food you searched
       //Create a dropdown list to select which meal of the day you want to add this food to
@@ -52,7 +60,7 @@ $(document).ready(() => {
 });
 
 // Donought Chart
-const consumedCalories = 25;
+const consumedCalories = 75;
 const leftCalories = 25;
 const ctx = document.getElementById("myChart").getContext("2d");
 myChart = new Chart(ctx, {
@@ -61,10 +69,10 @@ myChart = new Chart(ctx, {
     datasets: [
       {
         data: [consumedCalories, leftCalories],
-        backgroundColor: ["#43B187", "#dedede"]
-      }
+        backgroundColor: ["#43B187", "#dedede"],
+      },
     ],
-    labels: ["Consumed calories", "Left Calories"]
+    labels: ["Consumed calories", "Left Calories"],
   },
   options: {
     responsive: false,
@@ -72,12 +80,12 @@ myChart = new Chart(ctx, {
     cutoutPercentage: 80,
     title: {
       text: "Daily calories",
-      display: false
+      display: false,
     },
     legend: {
-      display: false
-    }
-  }
+      display: false,
+    },
+  },
 });
 
 // Center text in the doughnut chart
@@ -98,7 +106,7 @@ Chart.pluginService.register({
 
     ctx.fillText(text, textX, textY);
     ctx.save();
-  }
+  },
 });
 
 // Nutrient table
@@ -106,7 +114,7 @@ const myData = [
   { Nutrients: "Carbs", Intake: 100 },
   { Nutrients: "Protein", Intake: 200 },
   { Nutrients: "Fat", Intake: 80 },
-  { Nutrients: "Sugar", Intake: 26 }
+  { Nutrients: "Fiber", Intake: 26 },
 ];
 
 function generateTableHead(table) {
