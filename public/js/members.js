@@ -21,11 +21,7 @@ $(document).ready(() => {
       url: link,
       method: "GET"
     }).done(result => {
-      console.log(link);
-      // console.log("name", result.text);
-      // console.log("kcal", result.parsed[0].food.nutrients.ENERC_KCAL);
-      // console.log("img", result.parsed[0].food.image);
-      $("#searchResult").empty(); // clear the previous result
+      //Display the food user searched and its nutrient profile
       const kCal = Math.round(result.hints[0].food.nutrients.ENERC_KCAL); // round up kCal
       const carbContent = Math.round(result.hints[0].food.nutrients.CHOCDF); // round up carb
       const proteinContent = Math.round(result.hints[0].food.nutrients.PROCNT); // round up protein
@@ -48,7 +44,7 @@ $(document).ready(() => {
           "https://media.istockphoto.com/vectors/yum-text-yummy-concept-design-doodle-for-print-vector-id1178543653?b=1&k=6&m=1178543653&s=612x612&w=0&h=M8Pa4Qne8pDCse3Zdg-a1fpMblWwZd1WfeHLMwNM1Mk=",
         alt: result.text,
         width: 200,
-        height: 180,
+        height: 180
       });
       //Append all result to the DOM
       $("#searchResult").append(
@@ -104,15 +100,15 @@ $(document).ready(() => {
 
 //When you add a new food item, refresh the donut chart and the nutrients table
 $("#addFood").click(() => {
-  location.reload()
+  location.reload();
 });
 
 // Function to create Donut Chart
 function createDonutChart() {
   $.ajax({
     url: "/api/nutrients",
-    method: "GET",
-  }).then((result) => {
+    method: "GET"
+  }).then(result => {
     const totalConsumedCal = result.reduce((acc, value) => {
       return acc + parseInt(value.calories);
     }, 0);
@@ -127,7 +123,7 @@ function createDonutChart() {
           {
             data: [consumedCalories, leftCalories],
             backgroundColor: ["#43B187", "#dedede"],
-          },
+          }
         ],
         labels: ["Consumed calories", "Left Calories"],
       },
@@ -137,12 +133,12 @@ function createDonutChart() {
         cutoutPercentage: 80,
         title: {
           text: "Daily calories",
-          display: false,
+          display: false
         },
         legend: {
-          display: false,
-        },
-      },
+          display: false
+        }
+      }
     });
 
     // Center text in the doughnut chart
