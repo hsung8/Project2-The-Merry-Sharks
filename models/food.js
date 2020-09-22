@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
-    carbs: {
+    carb: {
       type: DataTypes.STRING,
       allowNull: true
     },

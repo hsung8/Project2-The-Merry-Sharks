@@ -58,15 +58,15 @@ module.exports = function(app) {
   app.post("/api/foods", (req, res) => {
     console.log(req.body);
     console.log(req.user);
-    // db.Food.create({
-    //   userId: req.body.userId,
-    //   meal: req.body.meal,
-    //   foodName: req.body.foodName,
-    //   calories: req.body.calories
-    // }).catch(err => {
-    //   res.status(500).json(err);
-    //   throw err;
-    // });
+    db.Food.create({
+      foodName: req.body.foodName,
+      meal: req.body.meal,
+      calories: req.body.calories,
+      carb: req.body.carb,
+    }).catch(err => {
+      res.status(500).json(err);
+      throw err;
+    });
     res.status(200);
   });
 };

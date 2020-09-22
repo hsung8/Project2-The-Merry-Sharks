@@ -78,7 +78,7 @@ $(document).ready(() => {
         `<input type="hidden" name="foodName" value=${result.text}>`
       );
       const hiddenCalorie = $(
-        `<input type="hidden" name="calorie" value=${kCal}>`
+        `<input type="hidden" name="calories" value=${kCal}>`
       );
       const hiddenCarb = $(
         `<input type="hidden" name="carb" value=${carbContent}>`
