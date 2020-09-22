@@ -1,114 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Calsengine</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
+    />
+    <link href="/stylesheets/style.css" rel="stylesheet" />
+  </head>
 
-<head>
-  <title>Calsengine</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" />
-  <link href="stylesheets/style.css" rel="stylesheet" />
-</head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarColor03"
+        aria-controls="navbarColor03"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-<body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/logout">
-          Logout
-        </a>
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/members"
+              >Main <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/members/chart">Chart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Resources </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Credits</a>
+          </li>
+        </ul>
       </div>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Hi Username</h2>
-        <h3>Your Calorie Goal on "Today" is "database-value" kcal</h3>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-md-6 text-center">
-        <canvas id="myChart" width="300" height="300"></canvas>
-      </div>
-      <div class="col-md-6 text-center">
-        <div>
-          <table style="width:100%">
-            <!-- Nutrient Table data goes here -->
-          </table>
+    </nav>
+
+    <div class="container dash-board">
+      <div class="row text-center" >
+        <div class="col-md-12">
+          <h2 class="greeting">Hi Username</h2>
         </div>
       </div>
     </div>
-    <hr />
-    <div class="container">
-      <div class="row">
+    <div class="container dash-board">
+      <div class="row text-center">
         <div class="col-md-6 text-center">
-          <form>
-            <div>
-              <label>Type your food</label>
-              <input placeholder="Input your food here" />
-            </div>
-            <div>
-              <label>Type calorie</label>
-              <input placeholder="Input calories" />
-            </div>
-            <button type="submit">submit</button>
-          </form>
+          <canvas id="myChart" width="300" height="300"></canvas>
         </div>
         <div class="col-md-6 text-center">
-          <h3>
-            <span>
-              <form>
-                <input id="food-name" name="food-name" placeholder="search what you ate" />
-                <button id="searchFood" type="submit">Search</button>
-              </form>
-            </span>
-          </h3>
-          <div id="searchResult"></div>
+          <div>
+            <table style="width:100%">
+              <!-- Nutrient Table data goes here -->
+            </table>
+          </div>
+        </div>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <h2>Manual Entry</h2>
+            <form id="manualEntry" action="/api/foods" method="post">
+              <label>Input Food</label><br />
+              <input
+                type="text"
+                placeholder="Name of food"
+                name="foodName"
+                required
+              /><br />
+              <label>Input calorie</label><br />
+              <input
+                type="number"
+                placeholder="unit in kCal"
+                name="calories"
+                required
+              /><br />
+              <label>Input carb</label><br />
+              <input
+                type="number"
+                placeholder="unit in gram"
+                name="carb"
+                required
+              /><br />
+              <label>Input protein</label><br />
+              <input
+                type="number"
+                placeholder="unit in gram"
+                name="protein"
+                required
+              /><br />
+              <label>Input Fat</label><br />
+              <input
+                type="number"
+                placeholder="unit in gram"
+                name="fat"
+                required
+              /><br />
+              <label>InputFiber</label><br />
+              <input
+                type="number"
+                placeholder="unit in gram "
+                name="fiber"
+                required
+              /><br /><br />
+              <label for="manualMealSelect">Select a meal</label>
+              <select name="meal" id="manualMealSelect">
+                <option value="breakfast">breakfast</option>
+                <option value="lunch">lunch</option>
+                <option value="dinner">dinner</option> </select
+              ><br /><br />
+              <button type="submit" class="btn btn-outline-primary btn-lg">
+                Add
+              </button>
+            </form>
+          </div>
+          <div class="col-md-6 text-center">
+            <h2>Search our database</h2>
+            <form>
+              <input
+                id="food-name"
+                name="food-name"
+                placeholder="search what you ate"
+              />
+              <button
+                id="searchFood"
+                type="submit"
+                class="btn btn-secondary btn-lg"
+              >
+                Search
+              </button>
+            </form>
+            <div
+              class="text-centerm input-group-sml"
+              id="databaseSearch"
+              style="height: 300px; overflow: auto"
+            ></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="http://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script type="text/javascript" src="js/members.js"></script>
-  <script type="text/javascript">
-    $("#searchFood").click((event) => {
-      event.preventDefault();
-      let searchTerm = $("#food-name")
-        .val()
-        .trim();
-      const link = `https://api.edamam.com/api/food-database/v2/parser?nutrition-type=logging&ingr=${searchTerm}&app_id=b3680fc6&app_key=8f1414fd887696e063a286f3fea6cd89`;
-      $.ajax({
-        url: link,
-        method: "GET",
-      }).done(function (result) {
-        // console.log("name", result.text);
-        // console.log("kcal", result.parsed[0].food.nutrients.ENERC_KCAL);
-        // console.log("img", result.parsed[0].food.image);
-        let kCal = Math.round(result.hints[0].food.nutrients.ENERC_KCAL);// round up kCal
-        let resultFood = $("<h3>").text(`${result.text} (${kCal} calories)`);
-        let resultImg = result.hints[0].food.image;
-        $("#searchResult").append(resultFood);//create the name of food you searched
-        //Create a dropdown list to select which meal of the day you want to add this food to
-        const dropdownList = $('<form action="/action_page.php"></form>');
-        dropdownList.append($(`<label for="meal">Choose a meal</label>`));
-        const mealOfDay = $(`<select name="meal" id="meal"></select>`)
-        const breakFast = $(`<option value="breakfast">breakfast</option>`);
-        const lunch = $(`<option value="lunch">lunch</option>`);
-        const dinner = $(`<option value="dinner">dinner</option>`);
-        breakFast.appendTo(mealOfDay);
-        lunch.appendTo(mealOfDay);
-        dinner.appendTo(mealOfDay);
-        mealOfDay.appendTo(dropdownList)
-        const input = $(`<br><input type="submit" value="Submit">`);
-        input.appendTo(dropdownList)
-        dropdownList.appendTo($("#searchResult"))
-      });
-    });
-  </script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="http://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script type="text/javascript" src="/js/members.js"></script>
+  </body>
 </html>

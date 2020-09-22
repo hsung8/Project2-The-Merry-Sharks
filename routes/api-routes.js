@@ -54,4 +54,34 @@ module.exports = function(app) {
       });
     }
   });
+  //Route to add a food item to the user's log
+  app.post("/api/foods", (req, res) => {
+    // Add food item to userlog and reload the page
+    db.Food.create({
+      foodName: req.body.foodName,
+      calories: req.body.calories,
+      meal: req.body.meal,
+      protein: req.body.protein,
+      fat: req.body.fat,
+      carb: req.body.carb,
+      fiber: req.body.fiber,
+      UserId: req.user.id
+    }).catch(err => {
+      res.status(500).json(err);
+      throw err;
+    });
+    res.redirect("/members");
+  });
+
+  //Route to get nutrients data for a user to populate the nutrients table and the donuts chart
+  app.get("/api/nutrients", (req, res) => {
+    db.Food.findAll({
+      where: {
+        userId: req.user.id
+      },
+      include: [db.User]
+    }).then(result => {
+      res.json(result);
+    });
+  });
 };
