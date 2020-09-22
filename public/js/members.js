@@ -24,7 +24,7 @@ $(document).ready(() => {
     }).done((result) => {
       //Display the food user searched and its nutrient profile
       const resultForm = $("#databaseSearch");
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 7; i++) {
         const kCal = Math.round(result.hints[i].food.nutrients.ENERC_KCAL); // round up kCal
         const carbContent = Math.round(result.hints[i].food.nutrients.CHOCDF); // round up carb
         const proteinContent = Math.round(
@@ -62,13 +62,13 @@ $(document).ready(() => {
           fiberResult
         );
         //Create a dropdown list to select which meal of the day you want to add this food to
-        newForm.append($(`<label for="meal">Choose a meal</label>`));
+        newForm.append($(`<label for="meal">Select a meal</label>`));
         const mealOfDay = $(`<select name="meal" id="meal"></select>`);
         const breakFast = $(`<option value="breakfast">breakfast</option>`);
         const lunch = $(`<option value="lunch">lunch</option>`);
         const dinner = $(`<option value="dinner">dinner</option>`);
         const input = $(
-          `<br><button id="addFood" type="submit">Submit</button>`
+          `<br><button id="addFood" type="submit" class="btn btn-primary">Submit</button>`
         ); //submit button
         mealOfDay.append(breakFast, lunch, dinner); // add options to dropdown
         mealOfDay.appendTo(newForm); // add dropdown to search result
@@ -90,7 +90,7 @@ $(document).ready(() => {
           `<input type="hidden" name="fat" value=${fatContent}>`
         );
         const hiddenFiber = $(
-          `<input type="hidden" name="fiber" value=${fiberContent}>`
+          `<input type="hidden" name="fiber" value=${fiberContent}><br><hr>`
         );
         //Append hidden values to to submit as data to database
         newForm.append(
@@ -102,8 +102,6 @@ $(document).ready(() => {
           hiddenFiber
         );
         newForm.appendTo(resultForm);
-        const divider = $(`<div class="dropdown-divider"></div>`);
-        divider.appendTo(resultForm);
       }
     });
   });

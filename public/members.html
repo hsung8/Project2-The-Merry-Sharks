@@ -6,24 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css"
+      href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
     />
     <link href="stylesheets/style.css" rel="stylesheet" />
   </head>
 
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/logout">
-            Logout
-          </a>
-        </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/members">Main <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/members/chart">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+
       </div>
     </nav>
+
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+      <div class="row text-center">
+        <div class="col-md-12">
           <h2 class="greeting">Hi Username</h2>
         </div>
       </div>
@@ -85,7 +104,7 @@
               <label>InputFiber</label><br />
               <input
                 type="number"
-                placeholder="unit in gram here"
+                placeholder="unit in gram "
                 name="fiber"
                 required
               /><br /><br />
@@ -95,7 +114,7 @@
                 <option value="lunch">lunch</option>
                 <option value="dinner">dinner</option> </select
               ><br /><br />
-              <button type="submit">Add</button>
+              <button type="submit" class="btn btn-primary">Add</button>
             </form>
           </div>
           <div class="col-md-6 text-center">
@@ -106,20 +125,31 @@
                 name="food-name"
                 placeholder="search what you ate"
               />
-              <button id="searchFood" type="submit">Search</button>
+              <button id="searchFood" type="submit" class="btn btn-secondary">
+                Search
+              </button>
             </form>
-            <div class="text-center container-fluid" id="databaseSearch" style="height: 300px; overflow: auto"></div>
+            <div
+              class="text-center"
+              id="databaseSearch"
+              style="height: 300px; overflow: auto"
+            ></div>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <a href="/members/chart">button</a>
-          </div>
-        </div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
     <script src="http://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script type="text/javascript" src="js/members.js"></script>
