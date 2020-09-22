@@ -1,7 +1,7 @@
 $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
-  $.get("/api/user_data").then(data => {
+  $.get("/api/user_data").then((data) => {
     const currentTime = moment().format("MMMM Do YYYY");
     //Create greetings to user with their name and total calories count
     $(".greeting").text(`Hello ${data.name}`);
@@ -11,89 +11,100 @@ $(document).ready(() => {
   });
 
   //Event listener for searching a food
-  $("#searchFood").click(event => {
+  $("#searchFood").click((event) => {
     event.preventDefault();
+    $("#databaseSearch").empty();
     const searchTerm = $("#food-name")
       .val()
       .trim();
     const link = `https://api.edamam.com/api/food-database/v2/parser?nutrition-type=logging&ingr=${searchTerm}&app_id=b3680fc6&app_key=8f1414fd887696e063a286f3fea6cd89`;
     $.ajax({
       url: link,
-      method: "GET"
-    }).done(result => {
+      method: "GET",
+    }).done((result) => {
       //Display the food user searched and its nutrient profile
       const resultForm = $("#databaseSearch");
-      const kCal = Math.round(result.hints[0].food.nutrients.ENERC_KCAL); // round up kCal
-      const carbContent = Math.round(result.hints[0].food.nutrients.CHOCDF); // round up carb
-      const proteinContent = Math.round(result.hints[0].food.nutrients.PROCNT); // round up protein
-      const fatContent = Math.round(result.hints[0].food.nutrients.FAT); // round up fat
-      const fiberContent = Math.round(result.hints[0].food.nutrients.FIBTG); // round up fiber
-      const resultFood = $("<h3>").text(
-        `${result.text} has ( ${kCal} calories)`
-      );
-      const carbResult = $("<h4>").text(`${carbContent} grams of carbs`);
-      const proteinResult = $("<h4>").text(
-        `${proteinContent} grams of protein`
-      );
-      const fatResult = $("<h4>").text(`${fatContent} grams of fat`);
-      const fiberResult = $("<h4>").text(`${fiberContent} grams of fiber`);
-      const resultImgUrl = result.hints[0].food.image; // link to the food image
-      //set image of food you search for to be display
-      const foodImage = $("<img>").attr({
-        src:
-          resultImgUrl ||
-          "https://media.istockphoto.com/vectors/yum-text-yummy-concept-design-doodle-for-print-vector-id1178543653?b=1&k=6&m=1178543653&s=612x612&w=0&h=M8Pa4Qne8pDCse3Zdg-a1fpMblWwZd1WfeHLMwNM1Mk=",
-        alt: result.text,
-        width: 200,
-        height: 180
-      });
-      //Append all result to the DOM
-      resultForm.append(
-        resultFood,
-        foodImage,
-        carbResult,
-        proteinResult,
-        fatResult,
-        fiberResult
-      );
-      //Create a dropdown list to select which meal of the day you want to add this food to
-      resultForm.append($(`<label for="meal">Choose a meal</label>`));
-      const mealOfDay = $(`<select name="meal" id="meal"></select>`);
-      const breakFast = $(`<option value="breakfast">breakfast</option>`);
-      const lunch = $(`<option value="lunch">lunch</option>`);
-      const dinner = $(`<option value="dinner">dinner</option>`);
-      const input = $(`<br><button id="addFood" type="submit">Submit</button>`); //submit button
-      mealOfDay.append(breakFast, lunch, dinner); // add options to dropdown
-      mealOfDay.appendTo(resultForm); // add dropdown to search result
-      input.appendTo(resultForm); // add submit button
-      //Create hidden input elements that contains data to send the the backend
-      const hiddenFoodName = $(
-        `<input type="hidden" name="foodName" value="${result.text}">`
-      );
-      const hiddenCalorie = $(
-        `<input type="hidden" name="calories" value=${kCal}>`
-      );
-      const hiddenCarb = $(
-        `<input type="hidden" name="carb" value=${carbContent}>`
-      );
-      const hiddenProtein = $(
-        `<input type="hidden" name="protein" value=${proteinContent}>`
-      );
-      const hiddenFat = $(
-        `<input type="hidden" name="fat" value=${fatContent}>`
-      );
-      const hiddenFiber = $(
-        `<input type="hidden" name="fiber" value=${fiberContent}>`
-      );
-      //Append hidden values to to submit as data to database
-      resultForm.append(
-        hiddenFoodName,
-        hiddenCalorie,
-        hiddenCarb,
-        hiddenProtein,
-        hiddenFat,
-        hiddenFiber
-      );
+      for (let i = 0; i < 3; i++) {
+        const kCal = Math.round(result.hints[i].food.nutrients.ENERC_KCAL); // round up kCal
+        const carbContent = Math.round(result.hints[i].food.nutrients.CHOCDF); // round up carb
+        const proteinContent = Math.round(
+          result.hints[i].food.nutrients.PROCNT
+        ); // round up protein
+        const fatContent = Math.round(result.hints[i].food.nutrients.FAT); // round up fat
+        const fiberContent = Math.round(result.hints[i].food.nutrients.FIBTG); // round up fiber
+        const resultFood = $("<h3>").text(
+          `${result.hints[i].food.label} has ( ${kCal} calories)`
+        );
+        const carbResult = $("<h4>").text(`${carbContent} grams of carbs`);
+        const proteinResult = $("<h4>").text(
+          `${proteinContent} grams of protein`
+        );
+        const fatResult = $("<h4>").text(`${fatContent} grams of fat`);
+        const fiberResult = $("<h4>").text(`${fiberContent} grams of fiber`);
+        const resultImgUrl = result.hints[0].food.image; // link to the food image
+        //set image of food you search for to be display
+        const foodImage = $("<img>").attr({
+          src:
+            resultImgUrl ||
+            "https://media.istockphoto.com/vectors/yum-text-yummy-concept-design-doodle-for-print-vector-id1178543653?b=1&k=6&m=1178543653&s=612x612&w=0&h=M8Pa4Qne8pDCse3Zdg-a1fpMblWwZd1WfeHLMwNM1Mk=",
+          alt: result.text,
+          width: 200,
+          height: 180,
+        });
+        const newForm = $(`<form action="/api/foods" method="post" ></form>`);
+        //Append all result to the DOM
+        newForm.append(
+          resultFood,
+          foodImage,
+          carbResult,
+          proteinResult,
+          fatResult,
+          fiberResult
+        );
+        //Create a dropdown list to select which meal of the day you want to add this food to
+        newForm.append($(`<label for="meal">Choose a meal</label>`));
+        const mealOfDay = $(`<select name="meal" id="meal"></select>`);
+        const breakFast = $(`<option value="breakfast">breakfast</option>`);
+        const lunch = $(`<option value="lunch">lunch</option>`);
+        const dinner = $(`<option value="dinner">dinner</option>`);
+        const input = $(
+          `<br><button id="addFood" type="submit">Submit</button>`
+        ); //submit button
+        mealOfDay.append(breakFast, lunch, dinner); // add options to dropdown
+        mealOfDay.appendTo(newForm); // add dropdown to search result
+        input.appendTo(newForm); // add submit button
+        //Create hidden input elements that contains data to send the the backend
+        const hiddenFoodName = $(
+          `<input type="hidden" name="foodName" value="${result.text}">`
+        );
+        const hiddenCalorie = $(
+          `<input type="hidden" name="calories" value=${kCal}>`
+        );
+        const hiddenCarb = $(
+          `<input type="hidden" name="carb" value=${carbContent}>`
+        );
+        const hiddenProtein = $(
+          `<input type="hidden" name="protein" value=${proteinContent}>`
+        );
+        const hiddenFat = $(
+          `<input type="hidden" name="fat" value=${fatContent}>`
+        );
+        const hiddenFiber = $(
+          `<input type="hidden" name="fiber" value=${fiberContent}>`
+        );
+        //Append hidden values to to submit as data to database
+        newForm.append(
+          hiddenFoodName,
+          hiddenCalorie,
+          hiddenCarb,
+          hiddenProtein,
+          hiddenFat,
+          hiddenFiber
+        );
+        newForm.appendTo(resultForm);
+        const divider = $(`<div class="dropdown-divider"></div>`);
+        divider.appendTo(resultForm);
+      }
     });
   });
 });
@@ -107,8 +118,8 @@ $("#addFood").click(() => {
 function createDonutChart() {
   $.ajax({
     url: "/api/nutrients",
-    method: "GET"
-  }).then(result => {
+    method: "GET",
+  }).then((result) => {
     const totalConsumedCal = result.reduce((acc, value) => {
       return acc + parseInt(value.calories);
     }, 0);
@@ -123,7 +134,7 @@ function createDonutChart() {
           {
             data: [consumedCalories, leftCalories],
             backgroundColor: ["#43B187", "#dedede"],
-          }
+          },
         ],
         labels: ["Consumed calories", "Left Calories"],
       },
@@ -133,17 +144,17 @@ function createDonutChart() {
         cutoutPercentage: 80,
         title: {
           text: "Daily calories",
-          display: false
+          display: false,
         },
         legend: {
-          display: false
-        }
-      }
+          display: false,
+        },
+      },
     });
 
     // Center text in the doughnut chart
     Chart.pluginService.register({
-      beforeDraw: function(chart) {
+      beforeDraw: function (chart) {
         const width = chart.chart.width,
           height = chart.chart.height,
           ctx = chart.chart.ctx;
@@ -159,7 +170,7 @@ function createDonutChart() {
 
         ctx.fillText(text, textX, textY);
         ctx.save();
-      }
+      },
     });
   });
 }
@@ -168,8 +179,8 @@ function createDonutChart() {
 function getNutrientData() {
   $.ajax({
     url: "/api/nutrients",
-    method: "GET"
-  }).then(result => {
+    method: "GET",
+  }).then((result) => {
     console.log(result[0].User);
     totalCarb = result.reduce((acc, value) => {
       return acc + parseInt(value.carb);
