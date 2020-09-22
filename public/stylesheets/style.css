@@ -30,6 +30,7 @@ form{
 
 
 .navbar{
+  background-color: rgb(67,177,135) !important;
 }
 
 .tbl{
@@ -61,9 +62,5 @@ label{
   margin-bottom: 5px;
   margin-top: 10px;
   font-size: 15px
-}
-
-body {
-  background-color: rgb(210, 210, 210, .20);
 }
 

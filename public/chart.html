@@ -13,6 +13,10 @@
       rel="stylesheet"
     />
     <link href="/stylesheets/style.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type="text/javascript" src="/js/chartLocal.js"></script>
   </head>
 
   <body>
@@ -72,8 +76,7 @@
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+   
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -84,42 +87,9 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-    <script src="http://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script type="text/javascript" src="js/chart.js"></script>
-    <script type="text/javascript">
-      $(document).ready(() => {
-        const table = $("tbody")[0];
-        $.ajax({
-          url: "/api/nutrients",
-          method: "GET",
-        }).then((result) => {
-          const myData = result.map((item) => {
-            const newItem = {
-              name: item.foodName,
-              consumedWhen: item.meal,
-              calorie: item.calories,
-              carb: item.carb,
-              protein: item.protein,
-              fat: item.fat,
-              fiber: item.fiber,
-            };
-            return newItem;
-          });
-          //   console.log(myData)
-          generateTable(table, myData);
-          $("#myTable").DataTable();
-        });
 
-        function generateTable(table, data) {
-          for (const element of data) {
-            const row = table.insertRow();
-            for (key in element) {
-              const cell = row.insertCell();
-              cell.append(element[key]);
-            }
-          }
-        }
-      });
+    <script type="text/javascript">
+     
     </script>
   </body>
 </html>
