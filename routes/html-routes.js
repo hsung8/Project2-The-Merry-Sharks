@@ -29,6 +29,6 @@ module.exports = function(app) {
 
   app.get("/members/chart", isAuthenticated, (req, res) => {
     console.log(req.user);
-    res.status(200);
+    res.sendFile(path.join(__dirname, "../public/chart.html"));
   });
 };
