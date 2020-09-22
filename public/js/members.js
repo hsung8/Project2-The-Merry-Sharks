@@ -154,12 +154,24 @@ Chart.pluginService.register({
   },
 });
 
+// request nutrients data from backend to create nutrient table
 function getNutrientData() {
   $.ajax({
-    url: link,
+    url: "/api/nutrients",
     method: "GET"
-  }).then();
+  }).then((nutrients) => {
+    console.log(nutrients);
+    totalCarb = nutrients.reduce((acc, value) => {
+      console.log(value);
+      const carb = parseInt(value.carb);
+      console.log(carb);
+      return acc + carb;
+    }, 0);
+    console.log(totalCarb);
+  });
 }
+
+getNutrientData(); // populate nutrients table everytime page reload
 
 // Function to create nutrient table
 function nutrientTable() {
@@ -200,5 +212,3 @@ function nutrientTable() {
 
   table.className = "tbl";
 }
-
-nutrientTable();

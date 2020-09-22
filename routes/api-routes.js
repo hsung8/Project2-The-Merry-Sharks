@@ -73,15 +73,14 @@ module.exports = function(app) {
     res.redirect("/members");
   });
 
-  //Route to get nutrients data for a user
+  //Route to get nutrients data for a user to populate the nutrients table and the donuts chart
   app.get("/api/nutrients", (req, res) => {
     db.Food.findAll({
       where: {
         userId: req.user.id
       }
     }).then(result => {
-      console.log(result);
-      res.status(200);
+      res.json(result);
     });
   });
 };
