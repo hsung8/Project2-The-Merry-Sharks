@@ -36,11 +36,30 @@ $(document).ready(() => {
         `${result.text} has ( ${kCal} calories)`
       );
       const carbResult = $("<h4>").text(`${carbContent} grams of carbs`);
-      const proteinResult = $("<h4>").text(`${proteinContent} grams of carbs`);
-      const fatResult = $("<h4>").text(`${fatContent} grams of carbs`);
-      const resultCarb = $("<h4>").text(`${carb} grams of carbs`);
-      // const resultImg = result.hints[0].food.image;
-      $("#searchResult").append(resultFood); //create the name of food you searched
+      const proteinResult = $("<h4>").text(
+        `${proteinContent} grams of proteins`
+      );
+      const fatResult = $("<h4>").text(`${fatContent} grams of fat`);
+      const fiberResult = $("<h4>").text(`${fiberContent} grams of fiber`);
+      const resultImgUrl = result.hints[0].food.image; // link to the food image
+      //set image of food you search for to be display
+      const foodImage = $("<img>").attr({
+        src:
+          resultImgUrl ||
+          "https://media.istockphoto.com/vectors/yum-text-yummy-concept-design-doodle-for-print-vector-id1178543653?b=1&k=6&m=1178543653&s=612x612&w=0&h=M8Pa4Qne8pDCse3Zdg-a1fpMblWwZd1WfeHLMwNM1Mk=",
+        alt: result.text,
+        width: 200,
+        height: 180
+      });
+      //Append all result to the DOM
+      $("#searchResult").append(
+        resultFood,
+        foodImage,
+        carbResult,
+        proteinResult,
+        fatResult,
+        fiberResult
+      );
       //Create a dropdown list to select which meal of the day you want to add this food to
       const dropdownList = $(`<form action="/action_page.php"></form>`);
       dropdownList.append($(`<label for="meal">Choose a meal</label>`));
