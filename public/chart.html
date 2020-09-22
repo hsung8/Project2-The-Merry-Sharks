@@ -5,14 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
-      href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
-      rel="stylesheet"
-    />
-    <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
     />
     <link href="stylesheets/style.css" rel="stylesheet" />
+    <link
+      href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -70,7 +70,6 @@
         </tbody>
       </table>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script
@@ -85,5 +84,10 @@
     ></script>
     <script src="http://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script type="text/javascript" src="js/chart.js"></script>
+    <script type="text/javascript">
+      $(document).ready(() => {
+        $("#myTable").DataTable();
+      });
+    </script>
   </body>
 </html>
