@@ -65,8 +65,8 @@ module.exports = function(app) {
       fat: req.body.fat,
       carb: req.body.carb,
       fiber: req.body.fiber,
-      UserId: req.user.id,
-    }).catch((err) => {
+      UserId: req.user.id
+    }).catch(err => {
       res.status(500).json(err);
       throw err;
     });

@@ -22,6 +22,7 @@ $(document).ready(() => {
       method: "GET"
     }).done(result => {
       //Display the food user searched and its nutrient profile
+      const resultForm = $("#databaseSearch");
       const kCal = Math.round(result.hints[0].food.nutrients.ENERC_KCAL); // round up kCal
       const carbContent = Math.round(result.hints[0].food.nutrients.CHOCDF); // round up carb
       const proteinContent = Math.round(result.hints[0].food.nutrients.PROCNT); // round up protein
@@ -47,7 +48,7 @@ $(document).ready(() => {
         height: 180
       });
       //Append all result to the DOM
-      $("#searchResult").append(
+      resultForm.append(
         resultFood,
         foodImage,
         carbResult,
@@ -56,7 +57,6 @@ $(document).ready(() => {
         fiberResult
       );
       //Create a dropdown list to select which meal of the day you want to add this food to
-      const resultForm = $("#searchResult");
       resultForm.append($(`<label for="meal">Choose a meal</label>`));
       const mealOfDay = $(`<select name="meal" id="meal"></select>`);
       const breakFast = $(`<option value="breakfast">breakfast</option>`);
@@ -159,7 +159,7 @@ function createDonutChart() {
 
         ctx.fillText(text, textX, textY);
         ctx.save();
-      },
+      }
     });
   });
 }
@@ -168,8 +168,8 @@ function createDonutChart() {
 function getNutrientData() {
   $.ajax({
     url: "/api/nutrients",
-    method: "GET",
-  }).then((result) => {
+    method: "GET"
+  }).then(result => {
     console.log(result[0].User);
     totalCarb = result.reduce((acc, value) => {
       return acc + parseInt(value.carb);
