@@ -1,11 +1,9 @@
 $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
-  $.get("/api/user_data").then((data) => {
-    console.log(data);
+  $.get("/api/user_data").then(data => {
     const currentTime = moment().format("MMMM Do YYYY");
-    console.log(currentTime);
-    //Create greetings to user with their total calories count
+    //Create greetings to user with their name and total calories count
     $(".greeting").text(`Hello ${data.name}`);
     $(
       `<h3 class="greeting2">Your Calorie Goal on ${currentTime} is <b>${data.goal} kcal</b></h3>`
@@ -13,7 +11,7 @@ $(document).ready(() => {
   });
 
   //Event listener for searching a food
-  $("#searchFood").click((event) => {
+  $("#searchFood").click(event => {
     event.preventDefault();
     const searchTerm = $("#food-name")
       .val()
@@ -21,8 +19,8 @@ $(document).ready(() => {
     const link = `https://api.edamam.com/api/food-database/v2/parser?nutrition-type=logging&ingr=${searchTerm}&app_id=b3680fc6&app_key=8f1414fd887696e063a286f3fea6cd89`;
     $.ajax({
       url: link,
-      method: "GET",
-    }).done((result) => {
+      method: "GET"
+    }).done(result => {
       console.log(link);
       // console.log("name", result.text);
       // console.log("kcal", result.parsed[0].food.nutrients.ENERC_KCAL);
@@ -38,7 +36,7 @@ $(document).ready(() => {
       );
       const carbResult = $("<h4>").text(`${carbContent} grams of carbs`);
       const proteinResult = $("<h4>").text(
-        `${proteinContent} grams of proteins`
+        `${proteinContent} grams of protein`
       );
       const fatResult = $("<h4>").text(`${fatContent} grams of fat`);
       const fiberResult = $("<h4>").text(`${fiberContent} grams of fiber`);

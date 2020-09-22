@@ -45,21 +45,25 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 text-center">
+            <h2>Manual Entry</h2>
             <form>
-              <div>
-                <label>Type your food</label>
-                <input placeholder="Input your food here" />
-              </div>
-              <div>
-                <label>Type calorie</label>
-                <input placeholder="Input calories" />
-              </div>
+              <label>Input Food</label><br>
+              <input placeholder="Input your food here" /><br>
+              <label>Input calorie</label><br>
+              <input placeholder="Input calories" /><br>
+              <label>Input carb</label><br>
+              <input placeholder="Input your food here" /><br>
+              <label>Input protein</label><br>
+              <input placeholder="Input your food here" /><br>
+              <label>Input Fat</label><br>
+              <input placeholder="Input your food here" /><br>
+              <label>InputFiber</label><br>
+              <input placeholder="Input your food here" /><br>
               <button type="submit">submit</button>
             </form>
           </div>
           <div class="col-md-6 text-center">
-            <h3>
-              <span>
+            <h2>Search our database</h2>
                 <form>
                   <input
                     id="food-name"
@@ -68,8 +72,6 @@
                   />
                   <button id="searchFood" type="submit">Search</button>
                 </form>
-              </span>
-            </h3>
             <form id="searchResult" action="/api/foods" method="post"></form>
           </div>
         </div>
