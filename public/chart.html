@@ -8,11 +8,11 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
     />
-    <link href="stylesheets/style.css" rel="stylesheet" />
     <link
       href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
       rel="stylesheet"
     />
+    <link href="stylesheets/style.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -54,20 +54,16 @@
       <table id="myTable" class="display">
         <thead>
           <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
+            <th>Food</th>
+            <th>Consumed When</th>
+            <th>Calorie</th>
+            <th>Carb</th>
+            <th>Protein</th>
+            <th>Fat</th>
+            <th>Fiber</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-          </tr>
-          <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
-          </tr>
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -86,7 +82,38 @@
     <script type="text/javascript" src="js/chart.js"></script>
     <script type="text/javascript">
       $(document).ready(() => {
-        $("#myTable").DataTable();
+        const table = $("tbody")[0]
+        $.ajax({
+          url: "/api/nutrients",
+          method: "GET",
+        }).then((result) => {
+          const myData = result.map((item) =>{
+            const newItem = {
+                name: item.foodName,
+                consumedWhen : item.meal,
+                calorie: item.calories,
+                carb: item.carb,
+                protein: item.protein,
+                fat: item.fat,
+                fiber: item.fiber
+            }
+            return newItem
+          })
+        //   console.log(myData)
+          generateTable(table,myData)
+          $("#myTable").DataTable();
+        });
+        
+        function generateTable(table, data) {
+          for (const element of data) {
+            const row = table.insertRow();
+            for (key in element) {
+              const cell = row.insertCell();
+              cell.append(element[key])
+            }
+          }
+        }
+       
       });
     </script>
   </body>
