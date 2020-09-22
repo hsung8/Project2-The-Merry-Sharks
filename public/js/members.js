@@ -68,7 +68,7 @@ $(document).ready(() => {
       const breakFast = $(`<option value="breakfast">breakfast</option>`);
       const lunch = $(`<option value="lunch">lunch</option>`);
       const dinner = $(`<option value="dinner">dinner</option>`);
-      const input = $(`<br><button type="submit">Submit</button>`); //submit button
+      const input = $(`<br><button id="addFood" type="submit">Submit</button>`); //submit button
       mealOfDay.append(breakFast, lunch, dinner); // add options to dropdown
       mealOfDay.appendTo(resultForm); // add dropdown to search result
       input.appendTo(resultForm); // add submit button
@@ -104,83 +104,103 @@ $(document).ready(() => {
   });
 });
 
-// Donought Chart
-const consumedCalories = 75;
-const leftCalories = 25;
-const ctx = document.getElementById("myChart").getContext("2d");
-myChart = new Chart(ctx, {
-  type: "doughnut",
-  data: {
-    datasets: [
-      {
-        data: [consumedCalories, leftCalories],
-        backgroundColor: ["#43B187", "#dedede"],
-      },
-    ],
-    labels: ["Consumed calories", "Left Calories"],
-  },
-  options: {
-    responsive: false,
-    maintainAspectRatio: false,
-    cutoutPercentage: 80,
-    title: {
-      text: "Daily calories",
-      display: false,
-    },
-    legend: {
-      display: false,
-    },
-  },
+//When you add a new food item, refresh the donut chart and the nutrients table
+$("#addFood").click(() => {
+  location.reload()
 });
 
-// Center text in the doughnut chart
-Chart.pluginService.register({
-  beforeDraw: function(chart) {
-    const width = chart.chart.width,
-      height = chart.chart.height,
-      ctx = chart.chart.ctx;
-
-    ctx.restore();
-    const fontSize = 1.5;
-    ctx.font = fontSize + "em sans-serif";
-    ctx.textBaseline = "middle";
-
-    const text = "1000\n Calories left",
-      textX = Math.round((width - ctx.measureText(text).width) / 2),
-      textY = height / 2;
-
-    ctx.fillText(text, textX, textY);
-    ctx.save();
-  },
-});
-
-// request nutrients data from backend to create nutrient table
-function getNutrientData() {
+// Function to create Donut Chart
+function createDonutChart() {
   $.ajax({
     url: "/api/nutrients",
-    method: "GET"
-  }).then((nutrients) => {
-    console.log(nutrients);
-    totalCarb = nutrients.reduce((acc, value) => {
-      console.log(value);
-      const carb = parseInt(value.carb);
-      console.log(carb);
-      return acc + carb;
+    method: "GET",
+  }).then((result) => {
+    const totalConsumedCal = result.reduce((acc, value) => {
+      return acc + parseInt(value.calories);
     }, 0);
-    console.log(totalCarb);
+    const totalCalorieLeft = result[0].User.goal - totalConsumedCal;
+    const consumedCalories = totalConsumedCal;
+    const leftCalories = totalCalorieLeft || result[0].User.goal;
+    const ctx = document.getElementById("myChart").getContext("2d");
+    myChart = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        datasets: [
+          {
+            data: [consumedCalories, leftCalories],
+            backgroundColor: ["#43B187", "#dedede"],
+          },
+        ],
+        labels: ["Consumed calories", "Left Calories"],
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        cutoutPercentage: 80,
+        title: {
+          text: "Daily calories",
+          display: false,
+        },
+        legend: {
+          display: false,
+        },
+      },
+    });
+
+    // Center text in the doughnut chart
+    Chart.pluginService.register({
+      beforeDraw: function(chart) {
+        const width = chart.chart.width,
+          height = chart.chart.height,
+          ctx = chart.chart.ctx;
+
+        ctx.restore();
+        const fontSize = 1.5;
+        ctx.font = fontSize + "em sans-serif";
+        ctx.textBaseline = "middle";
+
+        const text = `${totalCalorieLeft} Calories left`,
+          textX = Math.round((width - ctx.measureText(text).width) / 2),
+          textY = height / 2;
+
+        ctx.fillText(text, textX, textY);
+        ctx.save();
+      },
+    });
   });
 }
 
-getNutrientData(); // populate nutrients table everytime page reload
+// function to GET nutrients data and create nutrients table
+function getNutrientData() {
+  $.ajax({
+    url: "/api/nutrients",
+    method: "GET",
+  }).then((result) => {
+    console.log(result[0].User);
+    totalCarb = result.reduce((acc, value) => {
+      return acc + parseInt(value.carb);
+    }, 0);
+    totalProtein = result.reduce((acc, value) => {
+      return acc + parseInt(value.protein);
+    }, 0);
+    totalFat = result.reduce((acc, value) => {
+      return acc + parseInt(value.fat);
+    }, 0);
+    totalFiber = result.reduce((acc, value) => {
+      return acc + parseInt(value.fiber);
+    }, 0);
+    createNutrientTable();
+  });
+}
 
 // Function to create nutrient table
-function nutrientTable() {
-  // Nutrient table
+function createNutrientTable() {
+  // Nutrient table framework
   const myData = [
-    { Nutrients: "Carbs", Intake: 100 },
-    { Nutrients: "Protein", Intake: 200 },
-    { Nutrients: "Fat", Intake: 80 },
-    { Nutrients: "Fiber", Intake: 26 },
+    { Nutrients: "Carbs", Intake: totalCarb + " g" },
+    { Nutrients: "Protein", Intake: totalProtein + " g" },
+    { Nutrients: "Fat", Intake: totalFat + " g" },
+    { Nutrients: "Fiber", Intake: totalFiber + " g" },
   ];
 
   function generateTableHead(table) {
@@ -212,3 +232,6 @@ function nutrientTable() {
 
   table.className = "tbl";
 }
+
+getNutrientData(); // call for nutrients data and create nutrients table on each reload
+createDonutChart();

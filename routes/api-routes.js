@@ -78,8 +78,9 @@ module.exports = function(app) {
     db.Food.findAll({
       where: {
         userId: req.user.id
-      }
-    }).then(result => {
+      },
+      include: [db.User]
+    }).then((result) => {
       res.json(result);
     });
   });
