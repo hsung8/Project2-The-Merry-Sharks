@@ -56,14 +56,17 @@ module.exports = function(app) {
   });
   //Route to add a food item to the user's log
   app.post("/api/foods", (req, res) => {
-    db.Food.create({
-      userId: req.body.userId,
-      meal: req.body.meal,
-      foodName: req.body.foodName,
-      calories: req.body.calories
-    }).catch(err => {
-      res.status(500).json(err);
-      throw err;
-    });
+    console.log(req.body);
+    console.log(req.user);
+    // db.Food.create({
+    //   userId: req.body.userId,
+    //   meal: req.body.meal,
+    //   foodName: req.body.foodName,
+    //   calories: req.body.calories
+    // }).catch(err => {
+    //   res.status(500).json(err);
+    //   throw err;
+    // });
+    res.status(200);
   });
 };

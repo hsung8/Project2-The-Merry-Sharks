@@ -49,7 +49,7 @@ $(document).ready(() => {
           "https://media.istockphoto.com/vectors/yum-text-yummy-concept-design-doodle-for-print-vector-id1178543653?b=1&k=6&m=1178543653&s=612x612&w=0&h=M8Pa4Qne8pDCse3Zdg-a1fpMblWwZd1WfeHLMwNM1Mk=",
         alt: result.text,
         width: 200,
-        height: 180
+        height: 180,
       });
       //Append all result to the DOM
       $("#searchResult").append(
@@ -61,19 +61,46 @@ $(document).ready(() => {
         fiberResult
       );
       //Create a dropdown list to select which meal of the day you want to add this food to
-      const dropdownList = $(`<form action="/action_page.php"></form>`);
-      dropdownList.append($(`<label for="meal">Choose a meal</label>`));
+      const resultForm = $("#searchResult");
+      resultForm.append($(`<label for="meal">Choose a meal</label>`));
       const mealOfDay = $(`<select name="meal" id="meal"></select>`);
       const breakFast = $(`<option value="breakfast">breakfast</option>`);
       const lunch = $(`<option value="lunch">lunch</option>`);
       const dinner = $(`<option value="dinner">dinner</option>`);
+      const input = $(`<br><button type="submit">Submit</button>`); //submit button
       breakFast.appendTo(mealOfDay);
       lunch.appendTo(mealOfDay);
       dinner.appendTo(mealOfDay);
-      mealOfDay.appendTo(dropdownList);
-      const input = $(`<br><input type="submit" value="Submit">`);
-      input.appendTo(dropdownList);
-      dropdownList.appendTo($("#searchResult"));
+      mealOfDay.appendTo(resultForm);
+      input.appendTo(resultForm); // add submit button
+      //Create hidden input elements that contains data to send the the backend
+      const hiddenFoodName = $(
+        `<input type="hidden" name="foodName" value=${result.text}>`
+      );
+      const hiddenCalorie = $(
+        `<input type="hidden" name="calorie" value=${kCal}>`
+      );
+      const hiddenCarb = $(
+        `<input type="hidden" name="carb" value=${carbContent}>`
+      );
+      const hiddenProtein = $(
+        `<input type="hidden" name="protein" value=${proteinContent}>`
+      );
+      const hiddenFat = $(
+        `<input type="hidden" name="fat" value=${fatContent}>`
+      );
+      const hiddenFiber = $(
+        `<input type="hidden" name="fiber" value=${fiberContent}>`
+      );
+      //Append hidden values to to submit as data to database
+      resultForm.append(
+        hiddenFoodName,
+        hiddenCalorie,
+        hiddenCarb,
+        hiddenProtein,
+        hiddenFat,
+        hiddenFiber
+      );
     });
   });
 });
