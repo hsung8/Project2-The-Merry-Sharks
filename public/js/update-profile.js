@@ -1,4 +1,7 @@
 $(document).ready(() => {
+//   $(".alert-success").hide();
+//   $(".alert-danger").hide();
+
   // Upon landing on page, get the user data and display on a table
   $.ajax({
     url: "/api/user_data",
@@ -12,17 +15,19 @@ $(document).ready(() => {
     $("#email").text(result.email);
     $("#goal").text(result.goal);
     const updateBtn = $(
-      `<button type="button" class="hidden" >Update</button>`
+      `<button type="button" class="btn btn-outline-primary btn-lg hidden" >Update</button>`
     );
     $(".update-button").append(updateBtn);
   });
 
+  // When user edit something inside the value column, show the "Update" button
   $("td").keypress(() => {
     $("button").removeClass("hidden");
   });
 
-  $(document).on("click", "button", event => {
-    event.preventDefault();
+  //When user click on the update button, update the data, show the alert, and hide the update button
+  $(document).on("click", "button", () => {
+    //create an object to send to the backend
     const data = {
       name: $("#name")
         .text()
@@ -36,9 +41,14 @@ $(document).ready(() => {
           .trim()
       )
     };
-    console.log(typeof data.goal)
-    if (data.goal !== NaN && data.email.includes("@") && data.name !== NaN) {
-      console.log("success", data);
+    // validate to make sure that user input goal, email, and name
+    if (!isNaN(data.goal) && data.email.includes("@") && data.name !== "") {
+      $(".alert-success")
+        .fadeTo(2000, 500)
+        .slideUp(500, () => {
+          $(".alert-success").slideUp(500);
+        });
+      //if validation pass, call ajax PUT method to update data
       $.ajax({
         url: "/api/update-info",
         method: "PUT",
@@ -47,10 +57,16 @@ $(document).ready(() => {
         },
         data: data
       }).then(() => {
-        console.log("successfully update")
+        console.log("I made here");
+        //Show the success alert and hide it after a few secs
       });
     } else {
-      alert("fail")
+      // if they dont pass the validation, alert them the error, and hide it after a few secs
+      $(".alert-danger")
+        .fadeTo(2000, 500)
+        .slideUp(500, () => {
+          $(".alert-danger").slideUp(500);
+        });
     }
   });
 });

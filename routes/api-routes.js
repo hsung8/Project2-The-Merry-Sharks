@@ -88,11 +88,8 @@ module.exports = function(app) {
     });
   });
 
-//Route to update user info
+  //Route to update user info
   app.put("/api/update-info", (req, res) => {
-    if(err){
-      res.json("Bad")
-    }
     db.User.update(
       { name: req.body.name, email: req.body.email, goal: req.body.goal },
       {
@@ -100,6 +97,11 @@ module.exports = function(app) {
           id: req.user.id
         }
       }
-    );
+    )
+      .catch(err => {
+        res.status(500).json(err);
+        throw err;
+      })
+      .then(() => res.status(200));
   });
 };

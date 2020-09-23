@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <a class="navbar-brand" href="/logout">
         Logout
       </a>
@@ -88,6 +88,7 @@
                 type="number"
                 placeholder="unit in kCal"
                 name="calories"
+                min="0"
                 required
               /><br />
               <label>Input carb</label><br />
@@ -95,6 +96,7 @@
                 type="number"
                 placeholder="unit in gram"
                 name="carb"
+                min="0"
                 required
               /><br />
               <label>Input protein</label><br />
@@ -102,6 +104,7 @@
                 type="number"
                 placeholder="unit in gram"
                 name="protein"
+                min="0"
                 required
               /><br />
               <label>Input Fat</label><br />
@@ -109,6 +112,7 @@
                 type="number"
                 placeholder="unit in gram"
                 name="fat"
+                min="0"
                 required
               /><br />
               <label>InputFiber</label><br />
@@ -116,6 +120,7 @@
                 type="number"
                 placeholder="unit in gram "
                 name="fiber"
+                min="0"
                 required
               /><br /><br />
               <label for="manualMealSelect">Select a meal</label>

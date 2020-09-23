@@ -8,15 +8,18 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
     />
-    <style >
+    <style>
       .hidden {
         display: none;
+      }
+      .navbar {
+        background-color: rgb(67, 177, 135) !important;
       }
     </style>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <a class="navbar-brand" href="/logout">
         Logout
       </a>
@@ -51,6 +54,7 @@
       </div>
     </nav>
     <br />
+
     <br />
     <div class="container">
       <div class="row">
@@ -79,6 +83,18 @@
           </table>
           <div class="container update-button"></div>
         </div>
+      </div>
+    </div>
+    <br />
+    <div class="container">
+      <div class="alert hidden alert-success fade show">
+        <strong>Congratulations!</strong> You have successfully updated your
+        info
+      </div>
+      <div class="alert hidden alert-danger fade show">
+        <strong
+          >Please make sure all fields are filled before submitting</strong
+        >
       </div>
     </div>
 
