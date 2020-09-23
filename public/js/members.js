@@ -130,7 +130,27 @@ $(document).ready(() => {
         const totalCalorieLeft = result[0].User.goal - totalConsumedCal;
         const consumedCalories = totalConsumedCal;
         const leftCalories = totalCalorieLeft;
-        donutChartGenerator(consumedCalories, leftCalories, totalCalorieLeft);
+        let calColorConsumed;
+        let calColorLeft;
+
+        if (leftCalories < 0) {
+          calColorConsumed = "#dedede";
+        } else {
+          calColorConsumed = "#43B187";
+        }
+        if (leftCalories < 0) {
+          calColorLeft = "#FF0000";
+        } else {
+          calColorLeft = "#dedede";
+        }
+
+        donutChartGenerator(
+          consumedCalories,
+          leftCalories,
+          totalCalorieLeft,
+          calColorConsumed,
+          calColorLeft
+        );
       }
     });
   }
@@ -138,7 +158,9 @@ $(document).ready(() => {
   function donutChartGenerator(
     consumedCalories,
     leftCalories,
-    totalCalorieLeft
+    totalCalorieLeft,
+    calColorConsumed,
+    calColorLeft
   ) {
     const ctx = document.getElementById("myChart").getContext("2d");
     myChart = new Chart(ctx, {
@@ -147,7 +169,7 @@ $(document).ready(() => {
         datasets: [
           {
             data: [consumedCalories, leftCalories],
-            backgroundColor: ["#43B187", "#dedede"]
+            backgroundColor: [calColorConsumed, calColorLeft]
           }
         ],
         labels: ["Consumed calories", "Left Calories"]
