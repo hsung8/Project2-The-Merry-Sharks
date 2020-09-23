@@ -46,12 +46,15 @@ module.exports = function(app) {
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        name: req.user.name,
-        goal: req.user.goal,
-        id: req.user.id
-      });
+      db.User.findOne({ where: { id: req.user.id } })
+        .then(result => {
+          res.json(result);
+          console.log(result);
+        })
+        .catch(err => {
+          res.status(500).json(err);
+          throw err;
+        });
     }
   });
   //Route to add a food item to the user's log
@@ -83,5 +86,20 @@ module.exports = function(app) {
     }).then(result => {
       res.json(result);
     });
+  });
+
+//Route to update user info
+  app.put("/api/update-info", (req, res) => {
+    if(err){
+      res.json("Bad")
+    }
+    db.User.update(
+      { name: req.body.name, email: req.body.email, goal: req.body.goal },
+      {
+        where: {
+          id: req.user.id
+        }
+      }
+    );
   });
 };

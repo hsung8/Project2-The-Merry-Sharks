@@ -36,9 +36,19 @@ $(document).ready(() => {
           .trim()
       )
     };
-    console.log(data.goal, typeof data.goal);
-    if (typeof data.goal === "number" && data.email.includes("@")) {
+    console.log(typeof data.goal)
+    if (data.goal !== NaN && data.email.includes("@") && data.name !== NaN) {
       console.log("success", data);
+      $.ajax({
+        url: "/api/update-info",
+        method: "PUT",
+        error: function(xhr, status, error) {
+          console.log(error);
+        },
+        data: data
+      }).then(() => {
+        console.log("successfully update")
+      });
     } else {
       alert("fail")
     }
