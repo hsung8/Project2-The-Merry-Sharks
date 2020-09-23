@@ -8,15 +8,6 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
     />
-    <link
-      href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
-      rel="stylesheet"
-    />
-    <link href="/stylesheets/style.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="http://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script type="text/javascript" src="/js/chartLocal.js"></script>
   </head>
 
   <body>
@@ -43,10 +34,10 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/members/chart">Chart</a>
+            <a class="nav-link" href="/members/chart">Chart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/members/update">Update Info </a>
+            <a class="nav-link active" href="#">Update Info </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Credits</a>
@@ -54,29 +45,25 @@
         </ul>
       </div>
     </nav>
-    
-    <div class="container mt-5 mb-5">
-      <div class="row">
-        <div class="col-md-12 overflow-auto">
-          <table id="myTable" class="display">
-            <thead class="thead-avoid">
-              <tr class="table-dark">
-                <th>Food</th>
-                <th>Consumed When</th>
-                <th>Calorie</th>
-                <th>Carb</th>
-                <th>Protein</th>
-                <th>Fat</th>
-                <th>Fiber</th>
+    <br />
+    <br />
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+              <tr class="table-active">
+                <th scope="col">User</th>
+                <th scope="col">Value</th>
               </tr>
             </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
+            <tbody>
+                <tr class="table">
+                  <th scope="row">Active</th>
+                  <td>Column content</td>
+                </tr>
+            </tbody>
     </div>
 
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -87,9 +74,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-
-    <script type="text/javascript">
-     
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script type="text/javascript" src="/js/update-profile.js"></script>
   </body>
 </html>

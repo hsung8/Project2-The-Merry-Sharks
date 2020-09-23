@@ -105,25 +105,41 @@ $(document).ready(() => {
       }
     });
   });
-});
+  //When you add a new food item, refresh the donut chart and the nutrients table
+  $("#addFood").click(() => {
+    location.reload();
+  });
 
-//When you add a new food item, refresh the donut chart and the nutrients table
-$("#addFood").click(() => {
-  location.reload();
-});
+  // Function to create Donut Chart
+  function createDonutChart() {
+    $.ajax({
+      url: "/api/nutrients",
+      method: "GET",
+      error: function(xhr, status, error) {
+        console.log(error);
+      }
+    }).then(result => {
+      if (result.length === 0) {
+        $.get("/api/user_data").then(data => {
+          donutChartGenerator(0, data.goal, data.goal);
+        });
+      } else {
+        const totalConsumedCal = result.reduce((acc, value) => {
+          return acc + parseInt(value.calories);
+        }, 0);
+        const totalCalorieLeft = result[0].User.goal - totalConsumedCal;
+        const consumedCalories = totalConsumedCal;
+        const leftCalories = totalCalorieLeft;
+        donutChartGenerator(consumedCalories, leftCalories, totalCalorieLeft);
+      }
+    });
+  }
 
-// Function to create Donut Chart
-function createDonutChart() {
-  $.ajax({
-    url: "/api/nutrients",
-    method: "GET"
-  }).then(result => {
-    const totalConsumedCal = result.reduce((acc, value) => {
-      return acc + parseInt(value.calories);
-    }, 0);
-    const totalCalorieLeft = result[0].User.goal - totalConsumedCal;
-    const consumedCalories = totalConsumedCal;
-    const leftCalories = totalCalorieLeft || result[0].User.goal;
+  function donutChartGenerator(
+    consumedCalories,
+    leftCalories,
+    totalCalorieLeft
+  ) {
     const ctx = document.getElementById("myChart").getContext("2d");
     myChart = new Chart(ctx, {
       type: "doughnut",
@@ -170,71 +186,70 @@ function createDonutChart() {
         ctx.save();
       }
     });
-  });
-}
-
-// function to GET nutrients data and create nutrients table
-function getNutrientData() {
-  $.ajax({
-    url: "/api/nutrients",
-    method: "GET"
-  }).then(result => {
-    console.log(result[0].User);
-    totalCarb = result.reduce((acc, value) => {
-      return acc + parseInt(value.carb);
-    }, 0);
-    totalProtein = result.reduce((acc, value) => {
-      return acc + parseInt(value.protein);
-    }, 0);
-    totalFat = result.reduce((acc, value) => {
-      return acc + parseInt(value.fat);
-    }, 0);
-    totalFiber = result.reduce((acc, value) => {
-      return acc + parseInt(value.fiber);
-    }, 0);
-    createNutrientTable();
-  });
-}
-
-// Function to create nutrient table
-function createNutrientTable() {
-  // Nutrient table framework
-  const myData = [
-    { Nutrients: "Carbs", Intake: totalCarb + " g" },
-    { Nutrients: "Protein", Intake: totalProtein + " g" },
-    { Nutrients: "Fat", Intake: totalFat + " g" },
-    { Nutrients: "Fiber", Intake: totalFiber + " g" }
-  ];
-
-  function generateTableHead(table) {
-    const thead = table.createTHead();
-    const row = thead.insertRow();
-    for (const key of data) {
-      const th = document.createElement("th");
-      const text = document.createTextNode(key);
-      th.appendChild(text);
-      row.appendChild(th);
-    }
   }
 
-  function generateTable(table, data) {
-    for (const element of data) {
-      const row = table.insertRow();
-      for (key in element) {
-        const cell = row.insertCell();
-        const text = document.createTextNode(element[key]);
-        cell.appendChild(text);
+  // function to GET nutrients data and create nutrients table
+  function getNutrientData() {
+    $.ajax({
+      url: "/api/nutrients",
+      method: "GET"
+    }).then(result => {
+      totalCarb = result.reduce((acc, value) => {
+        return acc + parseInt(value.carb);
+      }, 0);
+      totalProtein = result.reduce((acc, value) => {
+        return acc + parseInt(value.protein);
+      }, 0);
+      totalFat = result.reduce((acc, value) => {
+        return acc + parseInt(value.fat);
+      }, 0);
+      totalFiber = result.reduce((acc, value) => {
+        return acc + parseInt(value.fiber);
+      }, 0);
+      createNutrientTable();
+    });
+  }
+
+  // Function to create nutrient table
+  function createNutrientTable() {
+    // Nutrient table framework
+    const myData = [
+      { Nutrients: "Carbs", Intake: totalCarb + " g" },
+      { Nutrients: "Protein", Intake: totalProtein + " g" },
+      { Nutrients: "Fat", Intake: totalFat + " g" },
+      { Nutrients: "Fiber", Intake: totalFiber + " g" }
+    ];
+
+    function generateTableHead(table) {
+      const thead = table.createTHead();
+      const row = thead.insertRow();
+      for (const key of data) {
+        const th = document.createElement("th");
+        const text = document.createTextNode(key);
+        th.appendChild(text);
+        row.appendChild(th);
       }
     }
+
+    function generateTable(table, data) {
+      for (const element of data) {
+        const row = table.insertRow();
+        for (key in element) {
+          const cell = row.insertCell();
+          const text = document.createTextNode(element[key]);
+          cell.appendChild(text);
+        }
+      }
+    }
+
+    const table = document.querySelector("table");
+    const data = Object.keys(myData[0]);
+    generateTableHead(table, data);
+    generateTable(table, myData);
+
+    table.className = "tbl";
   }
 
-  const table = document.querySelector("table");
-  const data = Object.keys(myData[0]);
-  generateTableHead(table, data);
-  generateTable(table, myData);
-
-  table.className = "tbl";
-}
-
-getNutrientData(); // call for nutrients data and create nutrients table on each reload
-createDonutChart();
+  getNutrientData();
+  createDonutChart();
+});
