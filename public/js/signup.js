@@ -53,7 +53,7 @@ let cneed;
 let fneed;
 let crneed;
 let pneed;
-let fd;
+//let fd;
 
 // eslint-disable-next-line no-unused-vars
 function cc() {
@@ -66,12 +66,12 @@ function cc() {
       weight = parseInt(weight);
       weight = Math.round(weight / 2.2046);
     }
-    const activity = document.getElementById("activity").value;
-    if (document.getElementById("gender").checked) {
-      fd = 10 * weight + 6.25 * cm - 5 * age + 5;
-    } else {
-      fd = 10 * weight + 6.25 * cm - 5 * age - 161;
-    }
+    // const activity = document.getElementById("activity").value;
+    // if (document.getElementById("gender").checked) {
+    //   fd = 10 * weight + 6.25 * cm - 5 * age + 5;
+    // } else {
+    //   fd = 10 * weight + 6.25 * cm - 5 * age - 161;
+    // }
     //////////////// Don't remove it. I need to fix the Travis problem.
     // switch (activity) {
     //   case "1":
