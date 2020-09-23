@@ -27,8 +27,8 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
-  app.get("/members/chart", isAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/chart.html"));
+  app.get("/members/table", isAuthenticated, (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/table.html"));
   });
 
   app.get("/members/update", isAuthenticated, (req, res) => {

@@ -24,13 +24,23 @@ $(document).ready(() => {
   $(document).on("click", "button", event => {
     event.preventDefault();
     const data = {
-      name: $("#name").text(),
-      email: $("#email").text(),
-      goal: $("#goal").text()
+      name: $("#name")
+        .text()
+        .trim(),
+      email: $("#email")
+        .text()
+        .trim(),
+      goal: parseInt(
+        $("#goal")
+          .text()
+          .trim()
+      )
     };
-    console.log(data)
-  })
-
-
-  
+    console.log(data.goal, typeof data.goal);
+    if (typeof data.goal === "number" && data.email.includes("@")) {
+      console.log("success", data);
+    } else {
+      alert("fail")
+    }
+  });
 });
