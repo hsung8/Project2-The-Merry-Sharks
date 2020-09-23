@@ -8,6 +8,11 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
     />
+    <style >
+      .hidden {
+        display: none;
+      }
+    </style>
   </head>
 
   <body>
@@ -48,19 +53,33 @@
     <br />
     <br />
     <div class="container">
-        <table class="table table-hover">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-hover">
             <thead>
               <tr class="table-active">
-                <th scope="col">User</th>
+                <th scope="col">User Data</th>
                 <th scope="col">Value</th>
               </tr>
             </thead>
             <tbody>
-                <tr class="table">
-                  <th scope="row">Active</th>
-                  <td>Column content</td>
-                </tr>
+              <tr class="table">
+                <td>Name</td>
+                <td contenteditable="true" id="name">Not found</td>
+              </tr>
+              <tr class="table">
+                <td>Email</td>
+                <td contenteditable="true" id="email">Not found</td>
+              </tr>
+              <tr class="table">
+                <td>Goal</td>
+                <td contenteditable="true" id="goal">Not found</td>
+              </tr>
             </tbody>
+          </table>
+          <div class="container update-button"></div>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
