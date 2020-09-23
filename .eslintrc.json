@@ -9,7 +9,6 @@
     "node": true
   },
   "extends": [
-    "some-other-config-you-use",
     "prettier"
   ],
   "plugins": ["prettier"],
