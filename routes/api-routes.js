@@ -102,7 +102,7 @@ module.exports = function(app) {
         res.status(500).json(err);
         throw err;
       })
-      .then(() => res.status(200));
+      .then(() => res.status(201));
   });
 
   app.delete("/api/deleteOne/:id", (req, res) => {
@@ -110,8 +110,13 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       }
-    }).then(() => {
-      res.status(200);
-    });
+    })
+      .catch(err => {
+        res.status(500).json(err);
+        throw err;
+      })
+      .then(() => {
+        res.status(201);
+      });
   });
 };
