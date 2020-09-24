@@ -15,7 +15,7 @@ $(document).ready(() => {
     $("#email").text(result.email);
     $("#goal").text(result.goal);
     const updateBtn = $(
-      `<button type="button" class="btn btn-outline-primary btn-lg hidden" >Update</button>`
+      `<button type="button" class="btn btn-outline-primary btn hidden" >Update</button>`
     );
     $(".update-button").append(updateBtn);
   });

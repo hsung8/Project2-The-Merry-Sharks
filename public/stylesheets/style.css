@@ -42,7 +42,6 @@ th :not(.thead-avoid) {
 }
 
 td, th :not(.thead-avoid) {
-  text-align: center;
   height: 60px;
 }
 
@@ -54,7 +53,6 @@ tr:hover {background-color: #f5f5f5;}
 }
 
 select{
-  margin-left: 5px;
   font-size: larger;
 }
 
@@ -116,3 +114,13 @@ label{
 .modal-backdrop {
   z-index: 0;
 }
+
+.padding{
+  margin-left: 10px
+}
+
+#foot,
+#inch{
+  margin-left: 0px
+}
+
