@@ -53,7 +53,7 @@ let cneed;
 let fneed;
 let crneed;
 let pneed;
-//let fd;
+let fd;
 
 // eslint-disable-next-line no-unused-vars
 function cc() {
@@ -66,30 +66,30 @@ function cc() {
       weight = parseInt(weight);
       weight = Math.round(weight / 2.2046);
     }
-    // const activity = document.getElementById("activity").value;
-    // if (document.getElementById("gender").checked) {
-    //   fd = 10 * weight + 6.25 * cm - 5 * age + 5;
-    // } else {
-    //   fd = 10 * weight + 6.25 * cm - 5 * age - 161;
-    // }
-    //////////////// Don't remove it. I need to fix the Travis problem.
-    // switch (activity) {
-    //   case "1":
-    //     cneed = fd * 1.2;
-    //     break;
-    //   case "2":
-    //     cneed = fd * 1.375;
-    //     break;
-    //   case "3":
-    //     cneed = fd * 1.53;
-    //     break;
-    //   case "4":
-    //     cneed = fd * 1.725;
-    //     break;
-    //   case "5":
-    //     cneed = fd * 1.9;
-    //     break;
-    // }
+    const activity = document.getElementById("activity").value;
+    if (document.getElementById("gender").checked) {
+      fd = 10 * weight + 6.25 * cm - 5 * age + 5;
+    } else {
+      fd = 10 * weight + 6.25 * cm - 5 * age - 161;
+    }
+
+    switch (activity) {
+      case "1":
+        cneed = fd * 1.2;
+        break;
+      case "2":
+        cneed = fd * 1.375;
+        break;
+      case "3":
+        cneed = fd * 1.53;
+        break;
+      case "4":
+        cneed = fd * 1.725;
+        break;
+      case "5":
+        cneed = fd * 1.9;
+        break;
+    }
     cneed = Math.floor(cneed);
     fneed = Math.floor((cneed * 0.25) / 9);
     if (wunit === "pounds") {
@@ -110,13 +110,11 @@ function cc() {
     document.getElementById("l1").innerHTML = "grams";
     document.getElementById("l2").innerHTML = "grams";
     document.getElementById("l3").innerHTML = "grams";
-    document.getElementById("l4").innerHTML = "grams";
     const caltype = document.getElementById("caltype").value;
     if (caltype === "g") {
       document.getElementById("l1").innerHTML = "grams";
       document.getElementById("l2").innerHTML = "grams";
       document.getElementById("l3").innerHTML = "grams";
-      document.getElementById("l4").innerHTML = "grams";
     }
     if (wunit === "pounds") {
       fat1 = fneed * 0.0022;
@@ -131,7 +129,6 @@ function cc() {
       document.getElementById("l1").innerHTML = "lbs";
       document.getElementById("l2").innerHTML = "lbs";
       document.getElementById("l3").innerHTML = "lbs";
-      document.getElementById("l4").innerHTML = "lbs";
     }
     if (caltype === "pounds") {
       fat1 = fneed * 0.0022;
@@ -146,7 +143,6 @@ function cc() {
       document.getElementById("l1").innerHTML = "lbs";
       document.getElementById("l2").innerHTML = "lbs";
       document.getElementById("l3").innerHTML = "lbs";
-      document.getElementById("l4").innerHTML = "lbs";
     }
     if (caltype === "kg") {
       fat2 = fneed / 1000;
@@ -161,7 +157,6 @@ function cc() {
       document.getElementById("l1").innerHTML = "kilogram";
       document.getElementById("l2").innerHTML = "kilogram";
       document.getElementById("l3").innerHTML = "kilogram";
-      document.getElementById("l4").innerHTML = "kilogram";
     }
   } else {
     alert("Please check your details");
@@ -239,7 +234,6 @@ function convert() {
       document.getElementById("l1").innerHTML = "grams";
       document.getElementById("l2").innerHTML = "grams";
       document.getElementById("l3").innerHTML = "grams";
-      document.getElementById("l4").innerHTML = "grams";
     }
     if (caltype === "pounds") {
       fat1 = fneed * 0.0022;
@@ -254,7 +248,6 @@ function convert() {
       document.getElementById("l1").innerHTML = "lbs";
       document.getElementById("l2").innerHTML = "lbs";
       document.getElementById("l3").innerHTML = "lbs";
-      document.getElementById("l4").innerHTML = "lbs";
     }
     if (caltype === "kg") {
       fat2 = fneed / 1000;
@@ -269,7 +262,6 @@ function convert() {
       document.getElementById("l1").innerHTML = "kilogram";
       document.getElementById("l2").innerHTML = "kilogram";
       document.getElementById("l3").innerHTML = "kilogram";
-      document.getElementById("l4").innerHTML = "kilogram";
     }
   } else {
     alert("Please check your details");
