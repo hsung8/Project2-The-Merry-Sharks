@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="http://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script type="text/javascript" src="/js/chartLocal.js"></script>
+    <script type="text/javascript" src="/js/table.js"></script>
   </head>
 
   <body>
@@ -54,7 +54,7 @@
         </ul>
       </div>
     </nav>
-    
+    <!-- Table -->
     <div class="container mt-5 mb-5">
       <div class="row">
         <div class="col-md-12 overflow-auto">
@@ -75,6 +75,29 @@
         </div>
       </div>
     </div>
+    <!-- Delete option -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form id="deleteOneItem">
+             <label for="itemIdToDelete">Would you like to delete any item?</label> 
+             <select name="itemIdToDelete" id="deleteList">
+                <!-- Food item will populate here -->
+             </select>
+             <button type="submit" class="btn btn-outline-primary btn">delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="alert hidden alert-success fade show hidden">
+        <strong>Congratulations!</strong> You have successfully updated your
+        info
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
 
    
     <script

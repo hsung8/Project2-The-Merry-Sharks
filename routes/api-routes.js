@@ -104,4 +104,14 @@ module.exports = function(app) {
       })
       .then(() => res.status(200));
   });
+
+  app.delete("/api/deleteOne/:id", (req, res) => {
+    db.Food.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(() => {
+      res.status(200);
+    });
+  });
 };
