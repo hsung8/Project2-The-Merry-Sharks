@@ -30,7 +30,7 @@ form{
 
 
 .navbar{
-  background-color: rgb(67,177,135) !important;
+  background-color: #078080 !important;
 }
 
 .tbl{
@@ -100,12 +100,6 @@ label{
   cursor: pointer;
 }
 
-/* .content {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-} */
 
 .hidden{
   display: none;
@@ -124,3 +118,6 @@ label{
   margin-left: 0px
 }
 
+body{
+  color: #232323
+}
