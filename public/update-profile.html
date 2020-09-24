@@ -8,10 +8,18 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
     />
+    <style>
+      .hidden {
+        display: none;
+      }
+      .navbar {
+        background-color: rgb(67, 177, 135) !important;
+      }
+    </style>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <a class="navbar-brand" href="/logout">
         Logout
       </a>
@@ -34,7 +42,7 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/members/chart">Chart</a>
+            <a class="nav-link" href="/members/table">Table</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="#">Update Info </a>
@@ -46,21 +54,48 @@
       </div>
     </nav>
     <br />
+
     <br />
     <div class="container">
-        <table class="table table-hover">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-hover">
             <thead>
               <tr class="table-active">
-                <th scope="col">User</th>
+                <th scope="col">User Data</th>
                 <th scope="col">Value</th>
               </tr>
             </thead>
             <tbody>
-                <tr class="table">
-                  <th scope="row">Active</th>
-                  <td>Column content</td>
-                </tr>
+              <tr class="table">
+                <td>Name</td>
+                <td contenteditable="true" id="name">Not found</td>
+              </tr>
+              <tr class="table">
+                <td>Email</td>
+                <td contenteditable="true" id="email">Not found</td>
+              </tr>
+              <tr class="table">
+                <td>Goal</td>
+                <td contenteditable="true" id="goal">Not found</td>
+              </tr>
             </tbody>
+          </table>
+          <div class="container update-button"></div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="container">
+      <div class="alert hidden alert-success fade show">
+        <strong>Congratulations!</strong> You have successfully updated your
+        info
+      </div>
+      <div class="alert hidden alert-danger fade show">
+        <strong
+          >Please make sure all fields are filled before submitting</strong
+        >
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
