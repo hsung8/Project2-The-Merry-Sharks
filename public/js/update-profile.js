@@ -1,7 +1,4 @@
 $(document).ready(() => {
-//   $(".alert-success").hide();
-//   $(".alert-danger").hide();
-
   // Upon landing on page, get the user data and display on a table
   $.ajax({
     url: "/api/user_data",
