@@ -106,8 +106,10 @@ $(document).ready(() => {
     });
   });
   //When you add a new food item, refresh the donut chart and the nutrients table
-  $("#addFood").click(() => {
-    location.reload();
+  $("#addFood").click(event => {
+    event.preventDefault()
+    createDonutChart();
+    getNutrientData()
   });
 
   // Function to create Donut Chart

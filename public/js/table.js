@@ -1,4 +1,9 @@
 $(document).ready(() => {
+  //Due to how HTML5 defines its semantics, the autofocus HTML attribute has no effect in Bootstrap modals. To achieve the same effect, use some custom JavaScript:
+  $("#myModal").on("shown.bs.modal", () => {
+    $("#myInput").trigger("focus");
+  });
+  // parent function to generate the page dynamically
   function GenerateThisPage() {
     const table = $("tbody")[0];
     $.ajax({
@@ -54,8 +59,18 @@ $(document).ready(() => {
     }).then(() => {
       //after successfully delete item, empty the table and delete options and re-generate new table
       $("tbody").empty();
-      $("option").remove()
+      $("option").remove();
       GenerateThisPage();
+    });
+  });
+  //Event listener to for the DELETE EVERYTHING button
+  $("#deleteAll").click(() => {
+    $.ajax({
+      url: "/api/delete/all",
+      method: "DELETE"
+    }).then(() => {
+      console.log("succcess")
+      location.reload()
     });
   });
   GenerateThisPage();

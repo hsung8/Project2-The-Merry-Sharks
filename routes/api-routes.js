@@ -104,7 +104,7 @@ module.exports = function(app) {
       })
       .then(() => res.status(201).end());
   });
-
+  //Route to delete one item for a user
   app.delete("/api/deleteOne/:id", (req, res) => {
     db.Food.destroy({
       where: {
@@ -116,7 +116,23 @@ module.exports = function(app) {
         throw err;
       })
       .then(() => {
-        res.status(201).end();
+        res.status(200).end();
+      });
+  });
+
+  //Route to delete ALL items for a user
+  app.delete("/api/delete/all", (req, res) => {
+    db.Food.destroy({
+      where: {
+        UserId: req.user.id
+      }
+    })
+      .catch(err => {
+        res.status(500).json(err);
+        throw err;
+      })
+      .then(() => {
+        res.status(200).end();
       });
   });
 };
