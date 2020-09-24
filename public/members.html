@@ -9,10 +9,16 @@
       href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
     />
     <link href="/stylesheets/style.css" rel="stylesheet" />
+    <style>
+      select{
+        margin-left: 5px
+      }
+      
+    </style>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <a class="navbar-brand" href="/logout">
         Logout
       </a>
@@ -36,7 +42,7 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/members/chart">Chart</a>
+            <a class="nav-link" href="/members/table">Table</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/members/update">Update Info </a>
@@ -73,6 +79,7 @@
       <br />
       <div class="container">
         <div class="row">
+          <!-- Manual entry box -->
           <div class="col-md-6 text-center">
             <h2>Manual Entry</h2>
             <form id="manualEntry" action="/api/foods" method="post">
@@ -88,6 +95,7 @@
                 type="number"
                 placeholder="unit in kCal"
                 name="calories"
+                min="0"
                 required
               /><br />
               <label>Input carb</label><br />
@@ -95,6 +103,7 @@
                 type="number"
                 placeholder="unit in gram"
                 name="carb"
+                min="0"
                 required
               /><br />
               <label>Input protein</label><br />
@@ -102,6 +111,7 @@
                 type="number"
                 placeholder="unit in gram"
                 name="protein"
+                min="0"
                 required
               /><br />
               <label>Input Fat</label><br />
@@ -109,6 +119,7 @@
                 type="number"
                 placeholder="unit in gram"
                 name="fat"
+                min="0"
                 required
               /><br />
               <label>InputFiber</label><br />
@@ -116,6 +127,7 @@
                 type="number"
                 placeholder="unit in gram "
                 name="fiber"
+                min="0"
                 required
               /><br /><br />
               <label for="manualMealSelect">Select a meal</label>
@@ -124,11 +136,12 @@
                 <option value="lunch">lunch</option>
                 <option value="dinner">dinner</option> </select
               ><br /><br />
-              <button type="submit" class="btn btn-outline-primary btn-lg">
+              <button type="submit" class="btn btn-outline-primary btn">
                 Add
               </button>
             </form>
           </div>
+          <!-- Search Database box -->
           <div class="col-md-6 text-center">
             <h2>Search our database</h2>
             <form>
@@ -140,7 +153,7 @@
               <button
                 id="searchFood"
                 type="submit"
-                class="btn btn-secondary btn-lg"
+                class="btn btn-secondary btn"
               >
                 Search
               </button>
