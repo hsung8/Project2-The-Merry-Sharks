@@ -5,7 +5,7 @@
   <title>Register</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css" />
   <link href="stylesheets/style.css" rel="stylesheet">
   <style>
     .modal-body {
@@ -29,8 +29,8 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Sign Up Form</h2>
+      <div class="col-md-6 offset-md-3">
+        <h2 class="text-center">Sign Up Form</h2>
         <form class="signup">
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
@@ -44,16 +44,20 @@
             <label for="exampleInputGoal">Daily Calorie Goal</label>
             <input type="number" class="form-control" id="goal-input" placeholder="Calorie Goal">
 
-            <button id="calculateB">Do you need a help to set up your goal?</button>
+            <button id="calculateB" class="btn btn-outline-info">Do you need a help to set up your goal?</button>
             <!-- Modal -->
             <div id="calculateModal" class="modal">
               <div class="modal-dialog" role="document">
 
                 <!-- Modal content: Calorie Calculator -->
                 <div class="modal-content">
-                  <span class="close">&times;</span>
-                  <div class="row text-center" id="BMR">
-                    <h3>Calorie Calculator</h3>
+                  <div class="modal-header">
+                    <div class="modal-title" id="BMR">
+                      <h3 >Calorie Calculator</h3>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
                   <div class="modal-body">
                     <table id="tab">
@@ -93,8 +97,8 @@
                                     <option value="7">7'</option>
                                   </select>
                                   feet
-                                  </td>
-                                  <td>
+                                </td>
+                                <td>
                                   <select style='width:40%;' name="inch" id="inch" onchange="hcal()">
                                     <option value="1">1"</option>
                                     <option value="2">2"</option>
@@ -108,7 +112,7 @@
                                     <option value="10">10"</option>
                                     <option value="11">11"</option>
                                   </select>
-                                  inches  
+                                  inches
                                 </td>
                               </tr>
                               <tr>
@@ -212,7 +216,7 @@
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span> <span class="msg"></span>
           </div>
-          <button type="submit" class="btn btn-default">Sign Up</button>
+          <button type="submit" class="btn btn-secondary">Sign Up</button>
         </form>
         <br />
         <br>
