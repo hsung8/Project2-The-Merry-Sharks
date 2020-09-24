@@ -17,7 +17,6 @@ $(document).ready(() => {
         };
         return newItem;
       });
-      //   console.log(myData)
       generateTable(table, myData);
       $("#myTable").DataTable();
       createDeleteOption(result);
@@ -52,9 +51,11 @@ $(document).ready(() => {
     $.ajax({
       url: `/api/deleteOne/${id}`,
       method: "DELETE"
-    }).then(response => {
-      console.log(response);
-      location.reload();
+    }).then(() => {
+      //after successfully delete item, empty the table and delete options and re-generate new table
+      $("tbody").empty();
+      $("option").remove()
+      GenerateThisPage();
     });
   });
   GenerateThisPage();
