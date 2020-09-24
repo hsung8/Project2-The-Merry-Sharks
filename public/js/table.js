@@ -69,8 +69,7 @@ $(document).ready(() => {
       url: "/api/delete/all",
       method: "DELETE"
     }).then(() => {
-      console.log("succcess")
-      location.reload()
+      location.reload();
     });
   });
   GenerateThisPage();
