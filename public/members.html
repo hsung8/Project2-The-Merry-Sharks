@@ -16,6 +16,28 @@
       color: #f8f5f2
     }
 
+    table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th{
+  color: #078080
+}
+
+.btn-secondary{
+  border-radius: 39px;
+background: linear-gradient(145deg, #ffffff, #d8d8d8);
+box-shadow:  5px 5px 9px #b9b9b9, 
+             -5px -5px 9px #078080;
+}
+
   </style>
 </head>
 
@@ -56,7 +78,7 @@
       </div>
     </div>
     <div class="container dash-board">
-      <div class="row">
+      <div class="row mb-5">
         <div class="col-md-4">
           <canvas id="myChart" width="300" height="300"></canvas>
         </div>
@@ -113,7 +135,7 @@
           <br>
           <h2 class="module-name"><strong>Search our database</strong></h2>
           <form>
-            <input class="form-control-lg" id="food-name" name="food-name" placeholder="search what you ate" />
+            <input class="form-control-lg mr-2 mt-4 " id="food-name" name="food-name" placeholder="search what you ate" />
             <button id="searchFood" type="submit" class="btn btn-secondary btn-lg">
               Search
             </button>

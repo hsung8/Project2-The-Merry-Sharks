@@ -6,24 +6,19 @@ form {
   margin: 10px
 }
 
-.jumbotron{
+.jumbotron {
   background-color: transparent;
   padding: 0px;
   margin-bottom: 0px;
-/* background-image: url("/img/background-img.png");
-background-size: 400px 200px;
-background-repeat: repeat; */
-border: 0px
+  border: 0px
 }
 
-.backdrop{
+.backdrop {
   background-color: #f8f5f2;
-background-image: url("/img/background-img.png");
-background-size: 400px 200px;
-background-repeat: repeat;
+  background-image: url("/img/background-img.png");
+  background-size: 400px 200px;
+  background-repeat: repeat;
 }
-
-
 
 #main-icon {
   color: red
@@ -72,6 +67,10 @@ td, th, .alert {
   font-size: 20px
 }
 
+.alert {
+  border-radius: 20px;
+}
+
 tr:hover {
   background-color: #f5f5f5;
 }
@@ -110,6 +109,31 @@ input, select {
 input {
   border: none
 }
+
+/* button group neumorphism style */
+.btn-warning{
+  border-radius: 39px;
+background: linear-gradient(145deg, #ff7f02, #e66b02);
+box-shadow:  5px 5px 10px #a5a5a5, 
+             -5px -5px 10px #ffffff;
+}
+
+.btn-danger{
+  border-radius: 39px;
+background: linear-gradient(145deg, #ff2c1f, #e6251a);
+box-shadow:  5px 5px 10px #828282, 
+             -5px -5px 10px #ffffff;
+}
+
+.btn-primary{
+  border-radius: 39px;
+background: linear-gradient(145deg, #1384ae, #106f93);
+box-shadow:  5px 5px 9px #0e5f7e, 
+             -5px -5px 9px #1697c8;
+}
+
+
+/* end of  button group neumorphism style */
 
 .modal {
   display: none;
@@ -189,13 +213,15 @@ body {
 .login-box, .table-delete {
   border-radius: 50px;
   background: #f8f5f2;
-  box-shadow:  9px 9px 9px #d3d0ce, 
-               -9px -9px 9px #ffffff;
+  box-shadow: 9px 9px 9px #d3d0ce, -9px -9px 9px #ffffff;
 }
 
-.login-label{
+.login-label {
   margin-top: 40px
 }
+
+/* shap divider style */
+
 .custom-shape-divider-bottom-1600992787 svg {
   position: relative;
   display: block;
@@ -206,6 +232,8 @@ body {
 .custom-shape-divider-bottom-1600992787 .shape-fill {
   fill: #078080;
 }
+
+/* end of shape diver style  */
 
 .tester {
   background-color: #078080;
