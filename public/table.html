@@ -2,9 +2,12 @@
 <html lang="en">
 
 <head>
-  <title>Calsengine</title>
+  <title>Table</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" 
+      type="image/png" 
+      href="/img/favicon.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css" />
   <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet" />
   <link href="/stylesheets/style.css" rel="stylesheet" />
@@ -18,7 +21,6 @@
       text-align: center;
       height: 60px;
     }
-    
   </style>
 </head>
 
@@ -65,8 +67,8 @@
           Please confirm that you want to clear all food items
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button id="deleteAll" type="button" class="btn btn-danger">Agree</button>
+          <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
+          <button id="deleteAll" type="button" class="btn btn-danger btn-lg">Agree</button>
         </div>
       </div>
     </div>
@@ -95,48 +97,50 @@
   </div>
   <!-- Delete option -->
   <div class="container">
-    <div class="row">
+    <div class="row row-grid">
       <div class="col-md-6 text-center">
-        <form id="deleteOneItem">
-          <label for="itemIdToDelete">Would you like to delete any item?</label>
-          <select name="itemIdToDelete" id="deleteList">
-            <!-- Food item will populate here -->
-          </select>
-          <button type="submit" class="btn btn-warning btn">Delete</button>
-        </form>
+        <div class="table-delete pt-2 pb-2">
+          <form id="deleteOneItem">
+            <label for="itemIdToDelete" class="mr-2">Would you like to delete any item?</label>
+            <select class="form-control-lg" name="itemIdToDelete" id="deleteList">
+              <!-- Food item will populate here -->
+            </select>
+            <button type="submit" class="btn btn-warning btn-lg">Delete</button>
+          </form>
+        </div>
       </div>
       <div class="col-md-6 text-center">
-        <form>
-          <label>Would you like to delete ALL items?</label>
-          <button type="button" class="btn btn-danger d-inline" data-toggle="modal" data-target="#exampleModal">
-            YES!!!!
-          </button>
-        </form>
+        <div class="table-delete pt-2 pb-2">
+          <form>
+            <label class="mr-2">Would you like to delete ALL items?</label>
+            <button type="button" class="btn btn-danger d-inline btn-lg mb-2" data-toggle="modal"
+              data-target="#exampleModal">
+              DELETE ALL
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- Alert bar -->
-  <div class="container">
-    <div class="alert hidden alert-success fade show hidden">
-      <strong>Congratulations!</strong> Successfully deleted
+    <!-- Alert bar -->
+    <div class="container mt-5">
+      <div class="alert hidden alert-success fade show hidden">
+        <strong>Congratulations!</strong> Successfully deleted
+      </div>
     </div>
-  </div>
+    <br>
+    <br>
+    <br>
 
-  <br>
-  <br>
-  <br>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
 
+    <script type="text/javascript">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-
-  <script type="text/javascript">
-
-  </script>
+    </script>
 </body>
 
 </html>

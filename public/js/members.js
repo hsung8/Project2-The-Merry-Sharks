@@ -6,7 +6,7 @@ $(document).ready(() => {
     //Create greetings to user with their name and total calories count
     $(".greeting").text(`Hello ${data.name}`);
     $(
-      `<h3 class="greeting2">Your Calorie Goal on ${currentTime} is <b>${data.goal} kcal</b></h3>`
+      `<h3 class="greeting2">Your Calorie Goal on ${currentTime} is <b>${data.goal} kCal</b></h3>`
     ).appendTo($(".greeting"));
   });
 
@@ -49,9 +49,10 @@ $(document).ready(() => {
             "https://media.istockphoto.com/vectors/yum-text-yummy-concept-design-doodle-for-print-vector-id1178543653?b=1&k=6&m=1178543653&s=612x612&w=0&h=M8Pa4Qne8pDCse3Zdg-a1fpMblWwZd1WfeHLMwNM1Mk=",
           alt: result.text,
           width: 200,
-          height: 180
+          height: 180,
+          class: "mb-3"
         });
-        const newForm = $(`<form action="/api/foods" method="post" ></form>`);
+        const newForm = $(`<form action="/api/foods" method="post"></form>`);
         //Append all result to the DOM
         newForm.append(
           resultFood,
@@ -90,7 +91,7 @@ $(document).ready(() => {
           `<input type="hidden" name="fat" value=${fatContent}>`
         );
         const hiddenFiber = $(
-          `<input type="hidden" name="fiber" value=${fiberContent}><br><hr>`
+          `<input type="hidden" name="fiber" value=${fiberContent}><br>`
         );
         //Append hidden values to to submit as data to database
         newForm.append(
@@ -101,7 +102,11 @@ $(document).ready(() => {
           hiddenFat,
           hiddenFiber
         );
-        newForm.appendTo(resultForm);
+        const newDiv = $(
+          `<div class="form-module container"><form action="/api/foods" method="post"></form></div>`
+        );
+        const singleSearchResult = newDiv.append(newForm);
+        singleSearchResult.appendTo(resultForm);
       }
     });
   });
