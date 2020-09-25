@@ -1,61 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Calsengine</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
-    />
-    <link href="/stylesheets/style.css" rel="stylesheet" />
-    <style>
-      select{
-        margin-left: 5px
-      }
-      
-    </style>
-  </head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-      <a class="navbar-brand" href="/logout">
-        Logout
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarColor03"
-        aria-controls="navbarColor03"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<head>
+  <title>Calsengine</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css" />
+  <link href="/stylesheets/style.css" rel="stylesheet" />
+  <style>
+    select {
+      margin-left: 5px
+    }
+  </style>
+</head>
 
-      <div class="collapse navbar-collapse" id="navbarColor03">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/members"
-              >Main <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/members/table">Table</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/members/update">Update Info </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Credits</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="/logout">
+      Logout
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+      aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/members">Main <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/members/table">Table</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/members/update">Update Info </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Credits</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div id="top-member">
     <div class="container dash-board">
-      <div class="row text-center" >
+      <div class="row text-center">
         <div class="col-md-12">
           <h2 class="greeting">Hi Username</h2>
         </div>
@@ -74,112 +62,72 @@
           </div>
         </div>
       </div>
-      <br />
-      <hr />
-      <br />
-      <div class="container">
-        <div class="row">
-          <!-- Manual entry box -->
-          <div class="col-md-6 text-center">
-            <h2>Manual Entry</h2>
-            <form id="manualEntry" action="/api/foods" method="post">
-              <label>Input Food</label><br />
-              <input
-                type="text"
-                placeholder="Name of food"
-                name="foodName"
-                required
-              /><br />
-              <label>Input calorie</label><br />
-              <input
-                type="number"
-                placeholder="unit in kCal"
-                name="calories"
-                min="0"
-                required
-              /><br />
-              <label>Input carb</label><br />
-              <input
-                type="number"
-                placeholder="unit in gram"
-                name="carb"
-                min="0"
-                required
-              /><br />
-              <label>Input protein</label><br />
-              <input
-                type="number"
-                placeholder="unit in gram"
-                name="protein"
-                min="0"
-                required
-              /><br />
-              <label>Input Fat</label><br />
-              <input
-                type="number"
-                placeholder="unit in gram"
-                name="fat"
-                min="0"
-                required
-              /><br />
-              <label>InputFiber</label><br />
-              <input
-                type="number"
-                placeholder="unit in gram "
-                name="fiber"
-                min="0"
-                required
-              /><br /><br />
-              <label for="manualMealSelect">Select a meal</label>
-              <select name="meal" id="manualMealSelect">
-                <option value="breakfast">breakfast</option>
-                <option value="lunch">lunch</option>
-                <option value="dinner">dinner</option> </select
-              ><br /><br />
-              <button type="submit" class="btn btn-outline-primary btn">
-                Add
-              </button>
-            </form>
-          </div>
-          <!-- Search Database box -->
-          <div class="col-md-6 text-center">
-            <h2>Search our database</h2>
-            <form>
-              <input
-                id="food-name"
-                name="food-name"
-                placeholder="search what you ate"
-              />
-              <button
-                id="searchFood"
-                type="submit"
-                class="btn btn-secondary btn"
-              >
-                Search
-              </button>
-            </form>
-            <div
-              class="text-centerm input-group-sml"
-              id="databaseSearch"
-              style="height: 300px; overflow: auto"
-            ></div>
-          </div>
+    </div>
+    <div class="custom-shape-divider-bottom-1600992787">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path
+          d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+          class="shape-fill"></path>
+      </svg>
+    </div>
+  </div>
+  <div id="bottom-member">
+    <div class="container">
+      <div class="row row-grid">
+        <!-- Manual entry box -->
+        <div class="col-md-4 text-center module">
+          <br>
+          <h2>Manual Entry</h2>
+          <form id="manualEntry" action="/api/foods" method="post">
+            <label>Input Food</label><br />
+            <input type="text" placeholder="Name of food" name="foodName" required /><br />
+            <label>Input calorie</label><br />
+            <input type="number" placeholder="unit in kCal" name="calories" min="0" required /><br />
+            <label>Input carb</label><br />
+            <input type="number" placeholder="unit in gram" name="carb" min="0" required /><br />
+            <label>Input protein</label><br />
+            <input type="number" placeholder="unit in gram" name="protein" min="0" required /><br />
+            <label>Input Fat</label><br />
+            <input type="number" placeholder="unit in gram" name="fat" min="0" required /><br />
+            <label>InputFiber</label><br />
+            <input type="number" placeholder="unit in gram " name="fiber" min="0" required /><br /><br />
+            <label for="manualMealSelect">Select a meal</label>
+            <select name="meal" id="manualMealSelect">
+              <option value="breakfast">breakfast</option>
+              <option value="lunch">lunch</option>
+              <option value="dinner">dinner</option>
+            </select><br /><br />
+            <button type="submit" class="btn btn-outline-primary btn">
+              Add
+            </button>
+          </form>
+        </div>
+        <!-- Search Database box -->
+        <div class="col-md-4 offset-md-4 text-center module">
+          <br>
+          <h2>Search our database</h2>
+          <form>
+            <input id="food-name" name="food-name" placeholder="search what you ate" />
+            <button id="searchFood" type="submit" class="btn btn-secondary btn">
+              Search
+            </button>
+          </form>
+          <div class="text-centerm input-group-sml" id="databaseSearch" style="height: 300px; overflow: auto"></div>
         </div>
       </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <script src="http://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script type="text/javascript" src="/js/members.js"></script>
-  </body>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="http://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script type="text/javascript" src="/js/members.js"></script>
+</body>
+
 </html>
