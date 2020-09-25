@@ -6,7 +6,7 @@ $(document).ready(() => {
     //Create greetings to user with their name and total calories count
     $(".greeting").text(`Hello ${data.name}`);
     $(
-      `<h3 class="greeting2">Your Calorie Goal on ${currentTime} is <b>${data.goal} kcal</b></h3>`
+      `<h3 class="greeting2">Your Calorie Goal on ${currentTime} is <b>${data.goal} kCal</b></h3>`
     ).appendTo($(".greeting"));
   });
 

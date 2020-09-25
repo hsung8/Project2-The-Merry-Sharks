@@ -11,6 +11,12 @@
     select {
       margin-left: 5px
     }
+
+    
+    .module-name{
+      color: #f8f5f2
+    }
+
   </style>
 </head>
 
@@ -45,16 +51,17 @@
     <div class="container dash-board">
       <div class="row text-center">
         <div class="col-md-12">
-          <h2 class="greeting">Hi Username</h2>
+          <!-- Username GREETING -->
+          <h2 class="greeting"><strong>Hi Username</strong></h2>
         </div>
       </div>
     </div>
     <div class="container dash-board">
-      <div class="row text-center">
-        <div class="col-md-6 text-center">
+      <div class="row">
+        <div class="col-md-4">
           <canvas id="myChart" width="300" height="300"></canvas>
         </div>
-        <div class="col-md-6 text-center">
+        <div class="col-md-6 offset-md-2 text-center">
           <div>
             <table style="width:100%">
               <!-- Nutrient Table data goes here -->
@@ -77,42 +84,42 @@
         <!-- Manual entry box -->
         <div class="col-md-4 text-center module">
           <br>
-          <h2>Manual Entry</h2>
+          <h2 class="module-name"><strong>Manual Entry</strong></h2>
           <form id="manualEntry" action="/api/foods" method="post">
             <label>Input Food</label><br />
-            <input type="text" placeholder="Name of food" name="foodName" required /><br />
-            <label>Input calorie</label><br />
-            <input type="number" placeholder="unit in kCal" name="calories" min="0" required /><br />
-            <label>Input carb</label><br />
-            <input type="number" placeholder="unit in gram" name="carb" min="0" required /><br />
-            <label>Input protein</label><br />
-            <input type="number" placeholder="unit in gram" name="protein" min="0" required /><br />
+            <input class="form-control-lg" type="text" placeholder="Name of food" name="foodName" required /><br />
+            <label>Input Calorie</label><br />
+            <input class="form-control-lg" type="number" placeholder="unit in kCal" name="calories" min="0" required /><br />
+            <label>Input Carb</label><br />
+            <input class="form-control-lg" type="number" placeholder="unit in gram" name="carb" min="0" required /><br />
+            <label>Input Protein</label><br />
+            <input class="form-control-lg" type="number" placeholder="unit in gram" name="protein" min="0" required /><br />
             <label>Input Fat</label><br />
-            <input type="number" placeholder="unit in gram" name="fat" min="0" required /><br />
-            <label>InputFiber</label><br />
-            <input type="number" placeholder="unit in gram " name="fiber" min="0" required /><br /><br />
+            <input class="form-control-lg" type="number" placeholder="unit in gram" name="fat" min="0" required /><br />
+            <label>Input Fiber</label><br />
+            <input class="form-control-lg" type="number" placeholder="unit in gram " name="fiber" min="0" required /><br /><br />
             <label for="manualMealSelect">Select a meal</label>
-            <select name="meal" id="manualMealSelect">
+            <select class="form-control-lg" name="meal" id="manualMealSelect">
               <option value="breakfast">breakfast</option>
               <option value="lunch">lunch</option>
               <option value="dinner">dinner</option>
             </select><br /><br />
-            <button type="submit" class="btn btn-outline-primary btn">
+            <button type="submit" class="btn btn-primary btn-lg">
               Add
             </button>
           </form>
         </div>
         <!-- Search Database box -->
-        <div class="col-md-4 offset-md-4 text-center module">
+        <div class="col-md-6 offset-md-2 text-center module">
           <br>
-          <h2>Search our database</h2>
+          <h2 class="module-name"><strong>Search our database</strong></h2>
           <form>
-            <input id="food-name" name="food-name" placeholder="search what you ate" />
-            <button id="searchFood" type="submit" class="btn btn-secondary btn">
+            <input class="form-control-lg" id="food-name" name="food-name" placeholder="search what you ate" />
+            <button id="searchFood" type="submit" class="btn btn-secondary btn-lg">
               Search
             </button>
           </form>
-          <div class="text-centerm input-group-sml" id="databaseSearch" style="height: 300px; overflow: auto"></div>
+          <div class="text-centerm input-group-sml" id="databaseSearch" style="height: 700px; overflow: auto"></div>
         </div>
       </div>
     </div>

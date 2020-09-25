@@ -65,8 +65,8 @@
           Please confirm that you want to clear all food items
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button id="deleteAll" type="button" class="btn btn-danger">Agree</button>
+          <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
+          <button id="deleteAll" type="button" class="btn btn-danger btn-lg">Agree</button>
         </div>
       </div>
     </div>
@@ -99,16 +99,16 @@
       <div class="col-md-6 text-center">
         <form id="deleteOneItem">
           <label for="itemIdToDelete">Would you like to delete any item?</label>
-          <select name="itemIdToDelete" id="deleteList">
+          <select class="form-control-lg" name="itemIdToDelete" id="deleteList">
             <!-- Food item will populate here -->
           </select>
-          <button type="submit" class="btn btn-warning btn">Delete</button>
+          <button type="submit" class="btn btn-warning btn-lg">Delete</button>
         </form>
       </div>
       <div class="col-md-6 text-center">
         <form>
           <label>Would you like to delete ALL items?</label>
-          <button type="button" class="btn btn-danger d-inline" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-danger d-inline btn-lg" data-toggle="modal" data-target="#exampleModal">
             YES!!!!
           </button>
         </form>
