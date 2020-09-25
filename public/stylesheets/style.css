@@ -6,10 +6,24 @@ form {
   margin: 10px
 }
 
-.jumbotron {
-  background-color: #43B187;
-  color: #ffe27c;
+.jumbotron{
+  background-color: transparent;
+  padding: 0px;
+  margin-bottom: 0px;
+/* background-image: url("/img/background-img.png");
+background-size: 400px 200px;
+background-repeat: repeat; */
+border: 0px
 }
+
+.backdrop{
+  background-color: #f8f5f2;
+background-image: url("/img/background-img.png");
+background-size: 400px 200px;
+background-repeat: repeat;
+}
+
+
 
 #main-icon {
   color: red
@@ -70,6 +84,7 @@ tr:hover {
 
 select {
   font-size: larger;
+  border: none
 }
 
 label {
@@ -171,11 +186,15 @@ body {
   box-shadow: 33px 33px 66px #056060, -33px -33px 66px #09a0a0;
 }
 
-.login-box {
+.login-box, .table-delete {
   border-radius: 50px;
   background: #f8f5f2;
   box-shadow:  9px 9px 9px #d3d0ce, 
                -9px -9px 9px #ffffff;
+}
+
+.login-label{
+  margin-top: 40px
 }
 .custom-shape-divider-bottom-1600992787 svg {
   position: relative;

@@ -12,7 +12,7 @@ $(document).ready(() => {
     $("#email").text(result.email);
     $("#goal").text(result.goal);
     const updateBtn = $(
-      `<button type="button" class="btn btn-outline-primary btn hidden" >Update</button>`
+      `<button type="button" class="btn btn-outline-primary btn hidden update-btn" >Update</button>`
     );
     $(".update-button").append(updateBtn);
   });
@@ -23,7 +23,7 @@ $(document).ready(() => {
   });
 
   //When user click on the update button, update the data, show the alert, and hide the update button
-  $(document).on("click", "button", () => {
+  $(document).on("click", ".update-btn", () => {
     //create an object to send to the backend
     const data = {
       name: $("#name")

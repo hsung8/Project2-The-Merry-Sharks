@@ -1,67 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Passport Authentication</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css" />
-    <link href="/stylesheets/style.css" rel="stylesheet">
-  </head>
 
-  <body>
+<head>
+  <title>Passport Authentication</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css" />
+  <link href="/stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="backdrop">
     <div class="jumbotron jumbotron-fluid">
       <div class="container text-center">
-        <div>
-          <img
-            src="https://www.flaticon.com/svg/static/icons/svg/3160/3160163.svg"
-            height="100"
-            width="100"
-            id="main-icon"
-          />
-          <h1 class="display-4">CALSENGINE</h1>
+        <div class="logo">
+          <img  src="/img/calengine-logo.svg" height="600" width="600" id="main-icon" />
         </div>
-        <p class="lead">
-          An application that helps you achieve your healthy eating habit
-        </p>
+
       </div>
     </div>
-    <div class="container">
+    <div class="container mb-5">
       <div class="row">
         <div class="col-md-6 offset-md-3 text-center login-box">
           <h1 class="login-label"><strong>Login</strong></h1>
           <form class="login">
             <div class="form-group">
-              <input
-                type="email"
-                class="form-control-lg"
-                id="email-input"
-                placeholder="Email"
-              />
+              <input type="email" class="form-control-lg" id="email-input" placeholder="Email" />
             </div>
             <div class="form-group">
-              <input
-                type="password"
-                class="form-control-lg"
-                id="password-input"
-                placeholder="Password"
-              />
+              <input type="password" class="form-control-lg" id="password-input" placeholder="Password" />
             </div>
             <button type="submit" class="btn btn-primary btn-lg">Login</button>
           </form>
           <br />
-          <p>Or sign up <a href="/">here</a></p>
+          <h4 class="pb-4">Or sign up <a href="/">here</a></h4>
         </div>
       </div>
     </div>
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-        <img src="img/fruit_image.jpg" width="400">
-      </div>
-      </div>
-    </div> -->
+  </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
-  </body>
+  <div class="container mt-5">
+    <h5 class="text-center">Developed with ❤️ by Ethan, Revethy, Hae Seung, and Courney</h5>
+  </div>
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/login.js"></script>
+</body>
+
 </html>

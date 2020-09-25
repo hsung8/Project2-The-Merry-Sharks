@@ -23,223 +23,212 @@
 </head>
 
 <body>
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container text-center">
-      <div>
-        <img src="https://www.flaticon.com/svg/static/icons/svg/3160/3160163.svg" height="100" width="100"
-          id="main-icon" />
-        <h1 class="display-4">CALSENGINE</h1>
-      </div>
-      <p class="lead">
-        An application that helps you achieve your healthy eating habit
-      </p>
+  <div class="backdrop">
+    <div class="container mt-5 pb-5">
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <h1 class="text-center"><strong>Sign Up Form</strong></h1>
-        <form class="signup text-center">
-          <div class="form-group text-center">
-            <input type="email" class="form-control-lg" id="email-input" placeholder="Email">
-          </div>
-          <div class="form-group text-center">
-            <input type="text" class="form-control-lg" id="name-input" placeholder="First Name">
-          </div>
-          <div class="form-group text-center">
-            <input type="number" class="form-control-lg" id="goal-input" placeholder="Daily Calorie Goal">
-            <br>
-            <button id="calculateB" class="btn btn-outline-info">Do you need a help to set up your goal?</button>
-            <!-- Modal -->
-            <div id="calculateModal" class="modal hidden">
-              <div class="modal-dialog" role="document">
+    <div class="pt-5">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 login-box">
+          <h1 class="text-center login-label"><strong>Create Your Account</strong></h1>
+          <form class="signup text-center">
+            <div class="form-group text-center">
+              <input type="email" class="form-control-lg" id="email-input" placeholder="Email">
+            </div>
+            <div class="form-group text-center">
+              <input type="text" class="form-control-lg" id="name-input" placeholder="First Name">
+            </div>
+            <div class="form-group text-center">
+              <input type="number" class="form-control-lg" id="goal-input" placeholder="Daily Calorie Goal">
+              <br>
+              <button id="calculateB" class="btn btn-outline-info">Do you need a help to set up your goal?</button>
+              <!-- Modal -->
+              <div id="calculateModal" class="modal hidden">
+                <div class="modal-dialog" role="document">
 
-                <!-- Modal content: Calorie Calculator -->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <div class="modal-title" id="BMR">
-                      <h3>Calorie Calculator</h3>
+                  <!-- Modal content: Calorie Calculator -->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <div class="modal-title" id="BMR">
+                        <h3>Calorie Calculator</h3>
+                      </div>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <table id="tab">
-                      <tr>
-                        <td>
-                          <form>
+                    <div class="modal-body">
+                      <table id="tab">
+                        <tr>
+                          <td>
+                            <form>
+                              <table>
+                                <tr>
+                                  <td>Age:</td>
+                                  <td>
+                                    <input type="text" name="age" id="age" size="3" maxlength="2"
+                                      onkeypress="return agecal(event,age)">
+                                  </td>
+                                  <td>
+                                    <p>Years old</p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>Gender:</td>
+                                  <td>
+                                    <input class="user-gender" type="radio" name="gender" id="gender" checked>
+                                    <p>Female</p>
+                                    <input class="user-gender" type="radio" name="gender" id="gender">
+                                    <p>Male</p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>Height:</td>
+                                  <td>
+                                    <select style='width:50%;' name="foot" id="foot" onchange="hcal()">
+                                      <option value="1">1'</option>
+                                      <option value="2">2'</option>
+                                      <option value="3">3'</option>
+                                      <option value="4">4'</option>
+                                      <option value="5">5'</option>
+                                      <option value="6">6'</option>
+                                      <option value="7">7'</option>
+                                    </select>
+                                    feet
+                                  </td>
+                                  <td>
+                                    <select style='width:40%;' name="inch" id="inch" onchange="hcal()">
+                                      <option value="1">1"</option>
+                                      <option value="2">2"</option>
+                                      <option value="3">3"</option>
+                                      <option value="4">4"</option>
+                                      <option value="5">5"</option>
+                                      <option value="6">6"</option>
+                                      <option value="7">7"</option>
+                                      <option value="8">8"</option>
+                                      <option value="9">9"</option>
+                                      <option value="10">10"</option>
+                                      <option value="11">11"</option>
+                                    </select>
+                                    inches
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>Height in centimeters :</td>
+                                  <td>
+                                    <input type="text" name="cen" id="cen" size="4" onkeyup="con(cen)">
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>Weight:</td>
+                                  <td>
+                                    <input type="text" name="weight" id="weight" maxlength="3" size="3"
+                                      onkeyup="isNumberKey(this.id)">
+                                  </td>
+                                  <td>
+                                    <select name="wunit" id="wunit">
+                                      <option value="kg">Kg</option>
+                                      <option value="pounds">Pounds</option>
+                                    </select>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>Activeness:</td>
+                                  <td>
+                                    <select style='width:100px;' name="activity" id="activity">
+                                      <option value="1">Sedentary</option>
+                                      <option value="2">Light Active</option>
+                                      <option value="3">Moderately Active</option>
+                                      <option value="4">Very Active</option>
+                                      <option value="5">Extremely Active</option>
+                                    </select>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <input class='blue_button' type="button" value="Calculate The Calorie"
+                                      onclick="cc()">
+                                  </td>
+                                </tr>
+                              </table>
+                            </form>
+                            <br>
+                            <div>
+                              <h5>Calorie Result</h5>
+                              <p>You need to intake the following calories daily to <b>maintain</b> your weight. If you
+                                want to <b>lose or gain</b> weight, please <b>subtract or add</b> 10% of your calorie
+                                needed.</p>
+                            </div>
+
                             <table>
                               <tr>
-                                <td>Age:</td>
+                                <td>Calorie Needed:</td>
                                 <td>
-                                  <input type="text" name="age" id="age" size="3" maxlength="2"
-                                    onkeypress="return agecal(event,age)">
+                                  <input type="text" id="rc" style="font-size:13px;" size="15" readonly>
                                 </td>
                                 <td>
-                                  <p>Years old</p>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Gender:</td>
-                                <td>
-                                  <input class="user-gender" type="radio" name="gender" id="gender" checked>
-                                  <p>Female</p>
-                                  <input class="user-gender" type="radio" name="gender" id="gender">
-                                  <p>Male</p>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Height:</td>
-                                <td>
-                                  <select style='width:50%;' name="foot" id="foot" onchange="hcal()">
-                                    <option value="1">1'</option>
-                                    <option value="2">2'</option>
-                                    <option value="3">3'</option>
-                                    <option value="4">4'</option>
-                                    <option value="5">5'</option>
-                                    <option value="6">6'</option>
-                                    <option value="7">7'</option>
-                                  </select>
-                                  feet
-                                </td>
-                                <td>
-                                  <select style='width:40%;' name="inch" id="inch" onchange="hcal()">
-                                    <option value="1">1"</option>
-                                    <option value="2">2"</option>
-                                    <option value="3">3"</option>
-                                    <option value="4">4"</option>
-                                    <option value="5">5"</option>
-                                    <option value="6">6"</option>
-                                    <option value="7">7"</option>
-                                    <option value="8">8"</option>
-                                    <option value="9">9"</option>
-                                    <option value="10">10"</option>
-                                    <option value="11">11"</option>
-                                  </select>
-                                  inches
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Height in centimeters :</td>
-                                <td>
-                                  <input type="text" name="cen" id="cen" size="4" onkeyup="con(cen)">
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>Weight:</td>
-                                <td>
-                                  <input type="text" name="weight" id="weight" maxlength="3" size="3"
-                                    onkeyup="isNumberKey(this.id)">
-                                </td>
-                                <td>
-                                  <select name="wunit" id="wunit">
-                                    <option value="kg">Kg</option>
+                                  <select name="caltype" id="caltype" onChange="convert()">
+                                    <option value="g">Grams</option>
+                                    <option value="kg">Kilograms</option>
                                     <option value="pounds">Pounds</option>
                                   </select>
                                 </td>
                               </tr>
+                            </table>
+
+                            <table>
                               <tr>
-                                <td>Activeness:</td>
+                                <td>Fat:</td>
                                 <td>
-                                  <select style='width:100px;' name="activity" id="activity">
-                                    <option value="1">Sedentary</option>
-                                    <option value="2">Light Active</option>
-                                    <option value="3">Moderately Active</option>
-                                    <option value="4">Very Active</option>
-                                    <option value="5">Extremely Active</option>
-                                  </select>
+                                  <input type="text" id="rf" style="font-size:13px;" size="10" readonly>
+                                </td>
+                                <td>
+                                  <p><label id="l1"></label> per day</p>
                                 </td>
                               </tr>
                               <tr>
+                                <td>Protein:</td>
                                 <td>
-                                  <input class='blue_button' type="button" value="Calculate The Calorie" onclick="cc()">
+                                  <input type="text" id="rp" style="font-size:13px;" size="10" readonly>
+                                </td>
+                                <td>
+                                  <p><label id="l2"></label> per day</p>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Carbohydrate:</td>
+                                <td>
+                                  <input type="text" id="rh" style="font-size:13px;" size="10" readonly>
+                                </td>
+                                <td>
+                                  <p><label id="l3"></label> per day</p>
                                 </td>
                               </tr>
                             </table>
-                          </form>
-                          <br>
-                          <div>
-                            <h5>Calorie Result</h5>
-                            <p>You need to intake the following calories daily to <b>maintain</b> your weight. If you
-                              want to <b>lose or gain</b> weight, please <b>subtract or add</b> 10% of your calorie
-                              needed.</p>
-                          </div>
-
-                          <table>
-                            <tr>
-                              <td>Calorie Needed:</td>
-                              <td>
-                                <input type="text" id="rc" style="font-size:13px;" size="15" readonly>
-                              </td>
-                              <td>
-                                <select name="caltype" id="caltype" onChange="convert()">
-                                  <option value="g">Grams</option>
-                                  <option value="kg">Kilograms</option>
-                                  <option value="pounds">Pounds</option>
-                                </select>
-                              </td>
-                            </tr>
-                          </table>
-
-                          <table>
-                            <tr>
-                              <td>Fat:</td>
-                              <td>
-                                <input type="text" id="rf" style="font-size:13px;" size="10" readonly>
-                              </td>
-                              <td>
-                                <p><label id="l1"></label> per day</p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Protein:</td>
-                              <td>
-                                <input type="text" id="rp" style="font-size:13px;" size="10" readonly>
-                              </td>
-                              <td>
-                                <p><label id="l2"></label> per day</p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Carbohydrate:</td>
-                              <td>
-                                <input type="text" id="rh" style="font-size:13px;" size="10" readonly>
-                              </td>
-                              <td>
-                                <p><label id="l3"></label> per day</p>
-                              </td>
-                            </tr>
-                          </table>
-                      </tr>
-                      </td>
-                    </table>
+                        </tr>
+                        </td>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
+              <br>
+              <br>
+              <input type="password" class="form-control-lg" id="password-input" placeholder="Password">
             </div>
-            <br>
-            <br>
-            <input type="password" class="form-control-lg" id="password-input" placeholder="Password">
-          </div>
-          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span> <span class="msg"></span>
-          </div>
-          <button type="submit" class="btn btn-secondary btn-lg ">Sign Up</button>
-        </form>
-        <br />
-        <br>
-        <p>Or log in <a href="/login">here</a></p>
+            <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Error:</span> <span class="msg"></span>
+            </div>
+            <button type="submit" class="btn btn-secondary btn-lg ">Sign Up</button>
+          </form>
+          <br />
+          <br>
+          <h4 class="pb-5">Or log in <a href="/login">here</a></h4>
+        </div>
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <img src="img/fruit_image.jpg" width="400">
-      </div>
-    </div>
+  <div class="container mt-5">
+    <h5 class="text-center">Developed with ❤️ by Ethan, Revethy, Hae Seung, and Courney</h5>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
