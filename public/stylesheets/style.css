@@ -36,6 +36,7 @@ form {
   margin-top: 30px;
 }
 
+
 /* Nav bar shadow */
 
 .navbar {
@@ -44,7 +45,7 @@ form {
 }
 
 .nav-link {
-  font-size: 15px
+  font-size: 18px
 }
 
 .btn {
@@ -110,28 +111,37 @@ input {
   border: none
 }
 
+/* form module */
+
+/* end of form module */
+
+.form-module {
+  border-radius: 39px;
+  background: #078080;
+  box-shadow: inset 9px 9px 18px #055c5c, inset -9px -9px 18px #09a4a4;
+  margin-bottom: 40px;
+  padding: 30px
+}
+
 /* button group neumorphism style */
-.btn-warning{
+
+.btn-warning {
   border-radius: 39px;
-background: linear-gradient(145deg, #ff7f02, #e66b02);
-box-shadow:  5px 5px 10px #a5a5a5, 
-             -5px -5px 10px #ffffff;
+  background: linear-gradient(145deg, #ff7f02, #e66b02);
+  box-shadow: 5px 5px 10px #a5a5a5, -5px -5px 10px #ffffff;
 }
 
-.btn-danger{
+.btn-danger {
   border-radius: 39px;
-background: linear-gradient(145deg, #ff2c1f, #e6251a);
-box-shadow:  5px 5px 10px #828282, 
-             -5px -5px 10px #ffffff;
+  background: linear-gradient(145deg, #ff2c1f, #e6251a);
+  box-shadow: 5px 5px 10px #828282, -5px -5px 10px #ffffff;
 }
 
-.btn-primary{
+.btn-primary {
   border-radius: 39px;
-background: linear-gradient(145deg, #1384ae, #106f93);
-box-shadow:  5px 5px 9px #0e5f7e, 
-             -5px -5px 9px #1697c8;
+  background: linear-gradient(145deg, #1384ae, #106f93);
+  box-shadow: 5px 5px 9px #0e5f7e, -5px -5px 9px #1697c8;
 }
-
 
 /* end of  button group neumorphism style */
 

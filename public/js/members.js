@@ -49,9 +49,10 @@ $(document).ready(() => {
             "https://media.istockphoto.com/vectors/yum-text-yummy-concept-design-doodle-for-print-vector-id1178543653?b=1&k=6&m=1178543653&s=612x612&w=0&h=M8Pa4Qne8pDCse3Zdg-a1fpMblWwZd1WfeHLMwNM1Mk=",
           alt: result.text,
           width: 200,
-          height: 180
+          height: 180,
+          class: "mb-3"
         });
-        const newForm = $(`<form action="/api/foods" method="post" ></form>`);
+        const newForm = $(`<div class="form-module container"><form action="/api/foods" method="post"></form></div>`);
         //Append all result to the DOM
         newForm.append(
           resultFood,
@@ -90,7 +91,7 @@ $(document).ready(() => {
           `<input type="hidden" name="fat" value=${fatContent}>`
         );
         const hiddenFiber = $(
-          `<input type="hidden" name="fiber" value=${fiberContent}><br><hr>`
+          `<input type="hidden" name="fiber" value=${fiberContent}><br>`
         );
         //Append hidden values to to submit as data to database
         newForm.append(
