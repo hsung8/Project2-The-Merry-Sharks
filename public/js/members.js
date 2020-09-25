@@ -216,12 +216,6 @@ $(document).ready(() => {
           ctx.fillText(text, textX, textY);
           ctx.save();
         }
-        //const text = `${totalCalorieLeft} Calories left`,
-        // textX = Math.round((width - ctx.measureText(text).width) / 2),
-        // textY = height / 2;
-
-        // ctx.fillText(text, textX, textY);
-        // ctx.save();
       }
     });
   }
