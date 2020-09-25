@@ -52,7 +52,7 @@ $(document).ready(() => {
           height: 180,
           class: "mb-3"
         });
-        const newForm = $(`<div class="form-module container"><form action="/api/foods" method="post"></form></div>`);
+        const newForm = $(`<form action="/api/foods" method="post"></form>`);
         //Append all result to the DOM
         newForm.append(
           resultFood,
@@ -102,7 +102,11 @@ $(document).ready(() => {
           hiddenFat,
           hiddenFiber
         );
-        newForm.appendTo(resultForm);
+        const newDiv = $(
+          `<div class="form-module container"><form action="/api/foods" method="post"></form></div>`
+        );
+        const singleSearchResult = newDiv.append(newForm);
+        singleSearchResult.appendTo(resultForm);
       }
     });
   });

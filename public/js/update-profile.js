@@ -12,10 +12,10 @@ $(document).ready(() => {
     $("#email").text(result.email);
     $("#goal").text(result.goal);
     const updateBtn = $(
-      `<button type="button" class="btn btn-primary btn-lg hidden update-btn" >Update</button>`
+      `<button type="button" class="btn btn-primary btn-lg hidden update-btn row-grid" >Update</button>`
     );
-    $(".update-button").append(updateBtn);
-  })
+    $(".to-add-btn").append(updateBtn);
+  });
 
   // When user edit something inside the value column, show the "Update" button
   $("td").keypress(() => {
