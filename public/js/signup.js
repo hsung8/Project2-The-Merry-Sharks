@@ -43,9 +43,10 @@ $(document).ready(() => {
       .catch(handleLoginErr);
   }
 
-  function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
-    $("#alert").fadeIn(500);
+  function handleLoginErr() {
+    $("#alert")
+      .fadeIn(500)
+      .fadeOut(2000);
   }
 });
 
